@@ -4,8 +4,7 @@ const activities = [
 	{
 		title: 'JYC Literary and Debating Coordinator',
 		detail: 'Serving as coordinator for the 2025-2026 session, supporting literary events, debate activities, and student participation.'
-	},
-	{
+	},{
 		title: 'Hackathon Participation',
 		detail: 'Participated in multiple hackathons, collaborating on fast-paced problem solving, prototyping, and technical presentations.'
 	},
