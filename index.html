@@ -1,12 +1,95 @@
 <!doctype html>
-<html>
+<html lang="en">
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Anshika Bharti  AI and Data Science Portfolio</title>
+    <title>Anshika Bharti | AI and Data Science Portfolio</title>
+    <link rel="stylesheet" href="styles.css" />
   </head>
   <body>
-    <div id="root"></div>
-    <script type="module" src="/src/main.jsx"></script>
+    <div class="container">
+      <header>
+        <h2>Anshika Bharti</h2>
+        <nav class="nav" aria-label="Portfolio sections">
+          <button type="button" class="active" data-section="about">About</button>
+          <button type="button" data-section="projects">Projects</button>
+          <button type="button" data-section="skills">Skills</button>
+          <button type="button" data-section="co-curricular">Co-curriculars</button>
+          <button type="button" data-section="certifications">Certifications</button>
+          <button type="button" data-section="contact">Contact</button>
+          <a href="public/resume.pdf" target="_blank" rel="noreferrer">Resume</a>
+        </nav>
+      </header>
+
+      <main>
+        <section class="hero">
+          <div class="hero-content">
+            <p class="eyebrow">Artificial Intelligence and Data Science Undergraduate</p>
+            <h1>Hi, I'm Anshika Bharti</h1>
+            <p>
+              I build data-driven applications with Python, machine learning, and full-stack development,
+              with hands-on work in fraud awareness, recommendation systems, and scalable web platforms.
+            </p>
+          </div>
+        </section>
+
+        <section id="about" class="section dashboard-section">
+          <h3>About Me</h3>
+          <p class="muted-copy">
+            Hi, I'm Anshika, a Computer Science and specialization in Artificial Intelligence and Data Science undergraduate passionate about building intelligent systems and scalable software solutions. My expertise spans C++, Data Structures & Algorithms (DSA), Python, Machine Learning, Data Analytics, Statistics, and Full-Stack Development, enabling me to tackle complex problems with both analytical and engineering approaches.
+          </p>
+          <p class="muted-copy">
+            I enjoy designing efficient algorithms, optimizing system performance, and developing applications that solve real-world challenges. My interests include Machine Learning, Generative AI, Agentic AI, Recommendation Systems, Fraud Detection, Cybersecurity, and Data-Driven User Experiences. I am particularly fascinated by how intelligent agents and large language models can automate decision-making, enhance productivity, and create impactful user experiences.
+          </p>
+          <p class="muted-copy">
+            Through hands-on projects, research, and development experience, I have built machine learning models, developed full-stack applications, implemented recommendation systems, and explored AI-powered solutions. Alongside my AI journey, I actively strengthen my problem-solving skills through Data Structures and Algorithms in C++, focusing on writing efficient, scalable, and production-ready code.
+          </p>
+          <p class="muted-copy">
+            I am constantly learning, experimenting, and pushing my boundaries in Software Engineering, Artificial Intelligence, Generative AI, and Agentic AI, with the goal of building innovative technology that creates meaningful real-world impact.
+          </p>
+          <div class="experience-card">
+            <div>
+              <p class="eyebrow">Experience</p>
+              <h4>Software Development Engineering Intern - RepCard Private Limited</h4>
+            </div>
+            <p>June 2025 - July 2025</p>
+          </div>
+        </section>
+
+        <section id="projects" class="section dashboard-section" hidden>
+          <div class="section-heading">
+            <h3>Projects</h3>
+            <p>Featured AI, ML, and full-stack projects. Screenshot and live demo slots are ready for deployment updates.</p>
+          </div>
+          <div class="projects-grid" id="projects-grid"></div>
+        </section>
+
+        <section id="skills" class="section dashboard-section" hidden>
+          <h3>Skills</h3>
+          <div class="skills-list" id="skills-list"></div>
+        </section>
+
+        <section id="co-curricular" class="section dashboard-section" hidden>
+          <h3>Co-curriculars</h3>
+          <div class="co-curricular-list" id="co-curricular-list"></div>
+        </section>
+
+        <section id="certifications" class="section dashboard-section" hidden>
+          <h3>Certifications</h3>
+          <div class="certifications-list" id="certifications-list"></div>
+        </section>
+
+        <section id="contact" class="section dashboard-section" hidden>
+          <h3>Contact</h3>
+          <div class="contact-links">
+            <a href="mailto:anshikabharti1911@gmail.com">anshikabharti1911@gmail.com</a>
+            <a href="https://github.com/anshikaaa1911" target="_blank" rel="noreferrer">GitHub</a>
+            <a href="https://www.linkedin.com/in/anshika-bharti" target="_blank" rel="noreferrer">LinkedIn</a>
+          </div>
+        </section>
+      </main>
+    </div>
+
+    <script src="script.js"></script>
   </body>
 </html>
