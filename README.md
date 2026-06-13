@@ -1,4 +1,4 @@
-#  Anshika Bharti Portfolio
+#  Anshika Bharti- PORTFOLIO
 
 A modern and responsive portfolio website showcasing my academic journey, technical expertise, projects, certifications, leadership experiences, and professional growth as a **Computer Science undergraduate specializing in Artificial Intelligence and Data Science**.
 
@@ -85,7 +85,7 @@ Open `index.html` in your preferred web browser.
 
 ---
 
-## 📫 Contact
+## Contact
 
 **Anshika Bharti**  
 Computer Science Undergraduate (AI & Data Science)
