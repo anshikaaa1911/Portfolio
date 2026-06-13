@@ -3,7 +3,6 @@ const projects = [
     title: 'Behavioral Fraud Awareness Simulation Platform',
     desc: 'An interactive platform that simulates real-world cyber fraud scenarios and uses CNN-based deep learning models, including XceptionNet, to classify scams and improve user awareness.',
     tags: ['Deep Learning', 'CNN', 'XceptionNet', 'Cyber Fraud'],
-    screenshot: '',
     demo: '#',
     code: 'https://github.com/anshikaaa1911/Behavioral-Fraud-Awareness---Simulation-Platform'
   },
@@ -11,7 +10,6 @@ const projects = [
     title: 'College Marketplace with ML Recommendations',
     desc: 'A peer-to-peer student resale platform with an ML recommendation system built from user interaction and behavioral data to improve product discovery.',
     tags: ['Recommendation System', 'ML', 'Data Preprocessing', 'Marketplace'],
-    screenshot: '',
     demo: '#',
     code: 'https://github.com/inshivank/College-Market-Place'
   },
@@ -19,25 +17,29 @@ const projects = [
     title: 'Employee Goal Management Portal',
     desc: 'A MERN-based portal for goal setting, approvals, performance tracking, audit logs, user administration, role-based access, and CSV/Excel report exports.',
     tags: ['MERN', 'JWT', 'MongoDB', 'REST APIs'],
-    screenshot: '',
     demo: '#',
-    code: '#'
+    code: 'https://github.com/anshikaaa1911/Employee-Management'
   },
   {
     title: 'GROWNET Trust-Based Community Platform',
     desc: 'A scalable community platform concept with trust scoring, SOS alerts, and recommendation features for safer, more reliable community interaction.',
     tags: ['Trust Scoring', 'Recommendations', 'Safety', 'Scalable Design'],
-    screenshot: '',
     demo: '#',
-    code: '#'
+    code: 'https://github.com/anshikaaa1911/GROWNET-Trust-Based-Community-Platform'
   },
   {
     title: 'Student Result Analysis and Prediction System',
     desc: 'A student performance analytics project that predicts pass/fail outcomes using academic activity data. The project includes data generation, ETL, SQLite warehousing, machine learning, model visualization, and a static website.',
     tags: ['Machine Learning', 'Python', 'Scikit-Learn', 'Predictive Analytics', 'Data Analytics', 'ETL Pipeline', 'Data Visualization', 'Web Development'],
-    screenshot: '',
     demo: '#',
-    code: '#'
+    code: 'https://github.com/anshikaaa1911/Student-Result-Analysis'
+  },
+  {
+    title: 'Prescription Digitization with Computer Vision and OCR',
+    desc: 'A computer vision and OCR-based application designed to digitize prescription images by converting handwritten or printed medical text into machine-readable format. The system leverages OpenCV for image preprocessing techniques such as grayscale conversion, thresholding, and noise reduction, combined with Tesseract OCR for text extraction. By automating the transcription process, the project improves accessibility, reduces manual data entry, and demonstrates practical applications of computer vision, image processing, and optical character recognition in healthcare-related workflows.',
+    tags: ['Computer Vision', 'OCR', 'OpenCV', 'Tesseract', 'Image Processing', 'Healthcare'],
+    demo: '#',
+    code: 'https://github.com/anshikaaa1911/HandWriting'
   }
 ];
 
@@ -89,25 +91,10 @@ function makeTagList(tags) {
   return tags.map((tag) => `<span>${tag}</span>`).join('');
 }
 
-function projectScreenshot(project, index) {
-  if (project.screenshot) {
-    return `<img src="${project.screenshot}" alt="${project.title} screenshot" />`;
-  }
-
-  return `
-    <div class="screenshot-placeholder" aria-label="${project.title} screenshot placeholder">
-      <div class="browser-bar"><span></span><span></span><span></span></div>
-      <div class="placeholder-layout"><div></div><div></div><div></div></div>
-      <p>Project Screenshot ${index + 1}</p>
-    </div>
-  `;
-}
-
 function renderProjects() {
   const grid = document.querySelector('#projects-grid');
-  grid.innerHTML = projects.map((project, index) => `
+  grid.innerHTML = projects.map((project) => `
     <article class="project-card">
-      <div class="project-screenshot">${projectScreenshot(project, index)}</div>
       <div class="project-body">
         <h4>${project.title}</h4>
         <p>${project.desc}</p>
