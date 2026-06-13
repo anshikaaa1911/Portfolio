@@ -1,11 +1,11 @@
 const projects = [
   {
-    title: 'Behavioral Fraud Awareness Simulation Platform',
-    desc: 'An interactive platform that simulates real-world cyber fraud scenarios and uses CNN-based deep learning models, including XceptionNet, to classify scams and improve user awareness.',
-    tags: ['Deep Learning', 'CNN', 'XceptionNet', 'Cyber Fraud'],
+    title: 'Doctor Prescription OCR System',
+    desc: 'A computer vision and OCR-based application that digitizes prescription images using OpenCV image preprocessing and Tesseract OCR for accurate text extraction.',
+    tags: ['Python', 'OpenCV', 'Tesseract OCR', 'Computer Vision'],
     screenshot: '',
     demo: '#',
-    code: 'https://github.com/anshikaaa1911/Behavioral-Fraud-Awareness---Simulation-Platform'
+    code: '#'
   },
   {
     title: 'College Marketplace with ML Recommendations',
@@ -22,6 +22,14 @@ const projects = [
     screenshot: '',
     demo: '#',
     code: '#'
+  },
+  {
+    title: 'Behavioral Fraud Awareness Simulation Platform',
+    desc: 'An interactive platform that simulates real-world cyber fraud scenarios and uses CNN-based deep learning models, including XceptionNet, to classify scams and improve user awareness.',
+    tags: ['Deep Learning', 'CNN', 'XceptionNet', 'Cyber Fraud'],
+    screenshot: '',
+    demo: '#',
+    code: 'https://github.com/anshikaaa1911/Behavioral-Fraud-Awareness---Simulation-Platform'
   },
   {
     title: 'GROWNET Trust-Based Community Platform',
