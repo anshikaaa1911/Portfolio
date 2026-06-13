@@ -4,20 +4,23 @@ const projects = [
     desc: 'An interactive platform that simulates real-world cyber fraud scenarios and uses CNN-based deep learning models, including XceptionNet, to classify scams and improve user awareness.',
     tags: ['Deep Learning', 'CNN', 'XceptionNet', 'Cyber Fraud'],
     demo: '#',
+    video: './public/videos/behavioral-fraud-awareness-demo.mp4',
     code: 'https://github.com/anshikaaa1911/Behavioral-Fraud-Awareness---Simulation-Platform'
   },
   {
     title: 'College Marketplace with ML Recommendations',
     desc: 'A peer-to-peer student resale platform with an ML recommendation system built from user interaction and behavioral data to improve product discovery.',
     tags: ['Recommendation System', 'ML', 'Data Preprocessing', 'Marketplace'],
-    demo: '#',
+    demo: 'https://inshivank.github.io/College-Market-Place/',
+    video: './public/videos/college-marketplace-demo.mp4',
     code: 'https://github.com/inshivank/College-Market-Place'
   },
   {
     title: 'Employee Goal Management Portal',
     desc: 'A MERN-based portal for goal setting, approvals, performance tracking, audit logs, user administration, role-based access, and CSV/Excel report exports.',
     tags: ['MERN', 'JWT', 'MongoDB', 'REST APIs'],
-    demo: '#',
+    demo: 'https://employee-management-0cu9.onrender.com/',
+    video: './public/videos/employee-goal-management-demo.mp4',
     code: 'https://github.com/anshikaaa1911/Employee-Management'
   },
   {
@@ -100,8 +103,9 @@ function renderProjects() {
         <p>${project.desc}</p>
         <div class="project-tags">${makeTagList(project.tags)}</div>
         <div class="project-actions">
-          <a class="${project.demo === '#' ? 'disabled-link' : ''}" href="${project.demo}" target="_blank" rel="noreferrer" aria-disabled="${project.demo === '#'}">Live Demo</a>
-          <a class="secondary-link ${project.code === '#' ? 'disabled-link' : ''}" href="${project.code}" target="_blank" rel="noreferrer" aria-disabled="${project.code === '#'}">Source Code</a>
+          <a class="${project.demo === '#' ? 'disabled-link' : ''}" href="${project.demo}" target="_blank" rel="noopener" aria-disabled="${project.demo === '#'}">Live Demo</a>
+          ${project.video ? `<a class="secondary-link" href="${project.video}" target="_blank" rel="noopener">Video Demo</a>` : ''}
+          <a class="secondary-link ${project.code === '#' ? 'disabled-link' : ''}" href="${project.code}" target="_blank" rel="noopener" aria-disabled="${project.code === '#'}">Source Code</a>
         </div>
       </div>
     </article>
