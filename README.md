@@ -1,4 +1,4 @@
-# 🌐 Anshika Bharti Portfolio
+#  Anshika Bharti Portfolio
 
 A modern and responsive portfolio website showcasing my academic journey, technical expertise, projects, certifications, leadership experiences, and professional growth as a **Computer Science undergraduate specializing in Artificial Intelligence and Data Science**.
 
@@ -8,7 +8,7 @@ Built using **HTML, CSS, and JavaScript**, the website is lightweight, fast, ful
 
 ---
 
-## 🚀 Features
+##  Features
 
 - Professional introduction and career overview
 - Technical skills organized by domain
@@ -22,7 +22,7 @@ Built using **HTML, CSS, and JavaScript**, the website is lightweight, fast, ful
 
 ---
 
-## 🛠️ Tech Stack
+##  Tech Stack
 
 - **HTML5** – Structure and content
 - **CSS3** – Styling and responsive design
@@ -31,7 +31,7 @@ Built using **HTML, CSS, and JavaScript**, the website is lightweight, fast, ful
 
 ---
 
-## 📂 Project Structure
+##  Project Structure
 
 ```text
 portfolio/
@@ -46,13 +46,13 @@ portfolio/
 └── README.md           # Project documentation
 ```
 
-## 🎯 Purpose
+##  Purpose
 
 The goal of this portfolio is to present a comprehensive overview of my technical and professional profile. It demonstrates my ability to design, develop, and showcase software solutions while highlighting my interests in Artificial Intelligence, Data Science, Cybersecurity, and Modern Web Development.
 
 ---
 
-## 📌 Areas of Interest
+##  Areas of Interest
 
 - Artificial Intelligence
 - Machine Learning
@@ -65,7 +65,7 @@ The goal of this portfolio is to present a comprehensive overview of my technica
 
 ---
 
-## 🌍 Deployment
+##  Deployment
 
 The portfolio can be deployed on any static hosting platform, including:
 
