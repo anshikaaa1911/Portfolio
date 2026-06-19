@@ -455,12 +455,12 @@ h1,h2,h3,p{letter-spacing:0}
 .projects-grid{
   display:flex;
   flex-direction:row;
-  gap:22px;
+  gap:28px;
   overflow-x:auto;
   scroll-snap-type:x mandatory;
   -webkit-overflow-scrolling:touch;
-  padding:4px 8px 14px;
-  scroll-padding-left:8px;
+  padding:4px clamp(12px,4vw,48px) 16px;
+  scroll-padding-left:clamp(12px,4vw,48px);
   /* hide scrollbar but keep scroll functional */
   scrollbar-width:none;
 }
@@ -480,7 +480,7 @@ h1,h2,h3,p{letter-spacing:0}
 
 .project-card{
   display:flex;
-  flex:0 0 min(390px,82vw);
+  flex:0 0 min(760px,82vw);
   flex-direction:column;
   overflow:hidden;
   border:none;
