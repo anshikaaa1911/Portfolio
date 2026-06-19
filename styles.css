@@ -464,6 +464,15 @@ h1,h2,h3,p{letter-spacing:0}
   scrollbar-width:none;
 }
 
+.projects-strip-section{
+  border:0;
+  background:rgba(255,253,248,0.74);
+}
+
+:root[data-theme="dark"] .projects-strip-section{
+  background:rgba(35,29,38,0.74);
+}
+
 .projects-grid::-webkit-scrollbar{
   display:none;
 }

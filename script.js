@@ -119,6 +119,7 @@ function projectThumbnail(project) {
 
 function projectCard(project) {
   const isBuilding = project.category === 'building';
+  const repoIsAvailable = isAvailable(project.repo);
   return `
     <article class="project-card reveal">
       ${projectThumbnail(project)}
@@ -129,7 +130,7 @@ function projectCard(project) {
         <div class="project-tags">${makeTagList(project.tech)}</div>
         ${isBuilding && project.planned ? `<div class="planned-list"><strong>Planned Features</strong><ul>${makeList(project.planned.slice(0, 3))}</ul></div>` : ''}
         <div class="project-actions">
-          <a class="primary-link" href="project.html?id=${project.id}">${isBuilding ? 'View Details' : 'View Project'}</a>
+          <a class="primary-link ${repoIsAvailable ? '' : 'disabled-link'}" href="${repoIsAvailable ? project.repo : '#'}" target="_blank" rel="noreferrer" aria-disabled="${!repoIsAvailable}">View Repository</a>
         </div>
       </div>
     </article>
@@ -139,10 +140,15 @@ function projectCard(project) {
 function renderProjectShowcase() {
   const builtGrid = document.querySelector('#built-projects');
   const buildingGrid = document.querySelector('#building-projects');
-  if (!builtGrid || !buildingGrid || !window.portfolioProjects) return;
+  if (!window.portfolioProjects) return;
 
-  builtGrid.innerHTML = window.portfolioProjects.filter((p) => p.category === 'built').map(projectCard).join('');
-  buildingGrid.innerHTML = window.portfolioProjects.filter((p) => p.category === 'building').map(projectCard).join('');
+  if (builtGrid) {
+    builtGrid.innerHTML = window.portfolioProjects.filter((p) => p.category === 'built').map(projectCard).join('');
+  }
+
+  if (buildingGrid) {
+    buildingGrid.innerHTML = window.portfolioProjects.filter((p) => p.category === 'building').map(projectCard).join('');
+  }
 }
 
 function renderScreenshotGallery(project) {
@@ -293,23 +299,26 @@ function initNavigation() {
   const header = document.querySelector('header') || document.querySelector('.header');
   const existingNav = document.querySelector('.nav');
   const menuToggle = document.querySelector('.menu-toggle');
+  const currentPage = window.location.pathname.split('/').pop() || 'index.html';
+  const anchorPrefix = currentPage === 'index.html' ? '' : 'index.html';
 
   // ── Primary nav links (always visible on desktop) ──
   const primaryLinks = [
-    { label: 'Projects',  href: '#projects' },
-    { label: 'Contact',   href: '#contact'  },
-    { label: 'Resume',    href: './resume1.pdf', external: true }
+    { label: 'Projects',  href: 'projects.html' },
+    { label: 'Contact',   href: `${anchorPrefix}#contact`  },
+    { label: 'Resume',    href: 'public/RESUME1.pdf', external: true }
   ];
 
   // ── Secondary links that collapse into the "More" dropdown ──
   const secondaryLinks = [
-    { label: 'About',          href: '#about'          },
-    { label: 'Education',      href: '#education'      },
-    { label: 'Experience',     href: '#experience'     },
-    { label: 'Skills',         href: '#skills'         },
-    { label: 'Certifications', href: '#certifications' },
-    { label: 'Leadership',     href: '#leadership'     },
-    { label: 'Achievements',   href: '#achievements'   }
+    { label: 'Ongoing Projects', href: 'ongoing.html' },
+    { label: 'About',          href: `${anchorPrefix}#about`          },
+    { label: 'Education',      href: `${anchorPrefix}#education`      },
+    { label: 'Experience',     href: `${anchorPrefix}#experience`     },
+    { label: 'Skills',         href: `${anchorPrefix}#skills`         },
+    { label: 'Certifications', href: `${anchorPrefix}#certifications` },
+    { label: 'Leadership',     href: `${anchorPrefix}#leadership`     },
+    { label: 'Achievements',   href: `${anchorPrefix}#achievements`   }
   ];
 
   if (!header) return;
