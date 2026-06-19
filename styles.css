@@ -520,6 +520,7 @@ h1,h2,h3,p{letter-spacing:0}
 }
 
 .thumb-window{
+  display:none;
   position:relative;
   z-index:1;
   width:min(220px,100%);
