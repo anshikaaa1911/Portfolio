@@ -12,10 +12,12 @@ Built using **HTML, CSS, and JavaScript**, the website is lightweight, fast, ful
 
 - Professional introduction and career overview
 - Technical skills organized by domain
-- Featured projects with technology stack details
+- Dedicated projects showcase with built and currently-building categories
+- Individual project pages with demo videos, live links, repositories, galleries, features, technical notes, learnings, and future enhancements
 - Certifications and achievements
 - Education and academic background
 - Leadership and extracurricular involvement
+- Dark/light mode toggle
 - Downloadable resume
 - Fully responsive design for desktop, tablet, and mobile devices
 - Lightweight architecture with no external framework dependencies
@@ -36,9 +38,12 @@ Built using **HTML, CSS, and JavaScript**, the website is lightweight, fast, ful
 ```text
 portfolio/
 │
-├── index.html          # Main portfolio structure and content
+├── index.html          # Single-page scrolling portfolio dashboard
+├── projects.html       # Dedicated projects showcase
+├── project.html        # Dynamic individual project detail page
+├── project-data.js     # Shared project content and metadata
 ├── styles.css          # Styling and responsive design
-├── script.js           # Navigation and dynamic interactions
+├── script.js           # Navigation, rendering, theme, and interactions
 │
 ├── public/
 │   └── resume.pdf      # Downloadable resume

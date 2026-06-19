@@ -1,51 +1,3 @@
-const projects = [
-  {
-    title: 'Behavioral Fraud Awareness Simulation Platform',
-    desc: 'An interactive platform that simulates real-world cyber fraud scenarios and uses CNN-based deep learning models, including XceptionNet, to classify scams and improve user awareness.',
-    tags: ['Deep Learning', 'CNN', 'XceptionNet', 'Cyber Fraud'],
-    demo: '#',
-    video: './public/videos/behavioral-fraud-awareness-demo.mp4',
-    code: 'https://github.com/anshikaaa1911/Behavioral-Fraud-Awareness---Simulation-Platform'
-  },
-  {
-    title: 'College Marketplace with ML Recommendations',
-    desc: 'A peer-to-peer student resale platform with an ML recommendation system built from user interaction and behavioral data to improve product discovery.',
-    tags: ['Recommendation System', 'ML', 'Data Preprocessing', 'Marketplace'],
-    demo: 'https://inshivank.github.io/College-Market-Place/',
-    video: './public/videos/college-marketplace-demo.mp4',
-    code: 'https://github.com/inshivank/College-Market-Place'
-  },
-  {
-    title: 'Employee Goal Management Portal',
-    desc: 'A MERN-based portal for goal setting, approvals, performance tracking, audit logs, user administration, role-based access, and CSV/Excel report exports.',
-    tags: ['MERN', 'JWT', 'MongoDB', 'REST APIs'],
-    demo: 'https://employee-management-0cu9.onrender.com/',
-    video: './public/videos/employee-goal-management-demo.mp4',
-    code: 'https://github.com/anshikaaa1911/Employee-Management'
-  },
-  {
-    title: 'GROWNET Trust-Based Community Platform',
-    desc: 'A scalable community platform concept with trust scoring, SOS alerts, and recommendation features for safer, more reliable community interaction.',
-    tags: ['Trust Scoring', 'Recommendations', 'Safety', 'Scalable Design'],
-    demo: '#',
-    code: 'https://github.com/anshikaaa1911/GROWNET-Trust-Based-Community-Platform'
-  },
-  {
-    title: 'Student Result Analysis and Prediction System',
-    desc: 'A student performance analytics project that predicts pass/fail outcomes using academic activity data. The project includes data generation, ETL, SQLite warehousing, machine learning, model visualization, and a static website.',
-    tags: ['Machine Learning', 'Python', 'Scikit-Learn', 'Predictive Analytics', 'Data Analytics', 'ETL Pipeline', 'Data Visualization', 'Web Development'],
-    demo: '#',
-    code: 'https://github.com/anshikaaa1911/Student-Result-Analysis'
-  },
-  {
-    title: 'Prescription Digitization with Computer Vision and OCR',
-    desc: 'A computer vision and OCR-based application designed to digitize prescription images by converting handwritten or printed medical text into machine-readable format. The system leverages OpenCV for image preprocessing techniques such as grayscale conversion, thresholding, and noise reduction, combined with Tesseract OCR for text extraction. By automating the transcription process, the project improves accessibility, reduces manual data entry, and demonstrates practical applications of computer vision, image processing, and optical character recognition in healthcare-related workflows.',
-    tags: ['Computer Vision', 'OCR', 'OpenCV', 'Tesseract', 'Image Processing', 'Healthcare'],
-    demo: '#',
-    code: 'https://github.com/anshikaaa1911/HandWriting'
-  }
-];
-
 const skillGroups = [
   {
     title: 'Machine Learning',
@@ -53,11 +5,11 @@ const skillGroups = [
   },
   {
     title: 'Programming',
-    items: ['Python', 'JavaScript', 'React', 'Node.js', 'REST APIs', 'MERN Stack', 'JWT Authentication', 'SQLite']
+    items: ['Python', 'C++', 'JavaScript', 'React', 'Node.js', 'REST APIs', 'MERN Stack', 'JWT Authentication', 'SQLite']
   },
   {
     title: 'Data and Tools',
-    items: ['EDA', 'Statistics', 'Data Preprocessing', 'MongoDB', 'Mongoose', 'CSV/Excel Reports', 'GitHub', 'VS Code', 'Jupyter Notebooks', 'Google Colab', 'Figma', 'Canva', 'Tableau', 'Power BI']
+    items: ['EDA', 'Statistics', 'Data Preprocessing', 'MongoDB', 'Mongoose', 'CSV/Excel Reports', 'GitHub', 'VS Code', 'Jupyter', 'Google Colab', 'Figma', 'Canva', 'Tableau', 'Power BI']
   }
 ];
 
@@ -68,19 +20,19 @@ const activities = [
   },
   {
     title: 'Hackathon Participation',
-    detail: 'Participated in multiple hackathons, collaborating on fast-paced problem solving, prototyping, and technical presentations.'
+    detail: 'Collaborated on fast-paced problem solving, prototyping, and technical presentations across hackathon environments.'
   },
   {
     title: 'MUN and Cultural Event Organization',
-    detail: 'Actively participated in organizing Model United Nations events and cultural activities, fostering teamwork, communication, and event management skills.'
+    detail: 'Helped organize Model United Nations events and cultural activities, strengthening teamwork, communication, and event management.'
   },
   {
     title: 'Anchoring and Stage Management',
-    detail: 'Anchored events and managed anchors, coordinating stage flow, speaker transitions, and audience engagement.'
+    detail: 'Anchored events and coordinated stage flow, speaker transitions, and audience engagement.'
   },
   {
     title: 'Debate Competitions',
-    detail: 'Won multiple debate competitions, strengthening public speaking, critical thinking, and argumentation skills.'
+    detail: 'Won multiple debate competitions, building public speaking, critical thinking, and argumentation skills.'
   }
 ];
 
@@ -90,70 +42,286 @@ const certifications = [
   'Agentic AI and Generative AI applications'
 ];
 
-function makeTagList(tags) {
+function makeTagList(tags = []) {
   return tags.map((tag) => `<span>${tag}</span>`).join('');
 }
 
-function renderProjects() {
-  const grid = document.querySelector('#projects-grid');
-  grid.innerHTML = projects.map((project) => `
-    <article class="project-card">
-      <div class="project-body">
-        <h4>${project.title}</h4>
-        <p>${project.desc}</p>
-        <div class="project-tags">${makeTagList(project.tags)}</div>
-        <div class="project-actions">
-          <a class="${project.demo === '#' ? 'disabled-link' : ''}" href="${project.demo}" target="_blank" rel="noopener" aria-disabled="${project.demo === '#'}">Live Demo</a>
-          ${project.video ? `<a class="secondary-link" href="${project.video}" target="_blank" rel="noopener">Video Demo</a>` : ''}
-          <a class="secondary-link ${project.code === '#' ? 'disabled-link' : ''}" href="${project.code}" target="_blank" rel="noopener" aria-disabled="${project.code === '#'}">Source Code</a>
-        </div>
-      </div>
-    </article>
-  `).join('');
+function makeList(items = []) {
+  return items.map((item) => `<li>${item}</li>`).join('');
+}
+
+function isAvailable(url) {
+  return url && url !== '#';
 }
 
 function renderSkills() {
   const list = document.querySelector('#skills-list');
+  if (!list) return;
+
   list.innerHTML = skillGroups.map((group) => `
-    <div class="skill-group">
-      <h4>${group.title}</h4>
+    <article class="skill-group">
+      <h3>${group.title}</h3>
       <div>${makeTagList(group.items)}</div>
-    </div>
+    </article>
   `).join('');
 }
 
 function renderActivities() {
   const list = document.querySelector('#co-curricular-list');
+  if (!list) return;
+
   list.innerHTML = activities.map((activity) => `
-    <div class="co-curricular-card">
-      <h4>${activity.title}</h4>
+    <article class="co-curricular-card">
+      <h3>${activity.title}</h3>
       <p>${activity.detail}</p>
-    </div>
+    </article>
   `).join('');
 }
 
 function renderCertifications() {
   const list = document.querySelector('#certifications-list');
+  if (!list) return;
+
   list.innerHTML = certifications.map((certification) => `
-    <div class="certification-card"><p>${certification}</p></div>
+    <article class="certification-card"><p>${certification}</p></article>
   `).join('');
 }
 
-function setActiveSection(sectionId) {
-  document.querySelectorAll('.dashboard-section').forEach((section) => {
-    section.hidden = section.id !== sectionId;
-  });
+function projectThumbnail(project) {
+  const media = project.video
+    ? `<video class="thumb-video" muted playsinline preload="metadata" src="${project.video}#t=0.5"></video>`
+    : '';
 
-  document.querySelectorAll('.nav button').forEach((button) => {
-    button.classList.toggle('active', button.dataset.section === sectionId);
+  return `
+    <div class="project-thumb ${project.video ? 'has-media' : ''}" aria-label="${project.thumbnailLabel}">
+      ${media}
+      <div class="thumb-window">
+        <span></span><span></span><span></span>
+      </div>
+      <strong>${project.shortTitle}</strong>
+      <small>${project.thumbnailLabel}</small>
+    </div>
+  `;
+}
+
+function projectCard(project) {
+  const isBuilding = project.category === 'building';
+  return `
+    <article class="project-card reveal">
+      ${projectThumbnail(project)}
+      <div class="project-body">
+        ${isBuilding ? '<span class="status-badge">Currently Building</span>' : ''}
+        <h3>${project.title}</h3>
+        <p>${project.description}</p>
+        <div class="project-tags">${makeTagList(project.tech)}</div>
+        ${isBuilding && project.planned ? `<div class="planned-list"><strong>Planned Features</strong><ul>${makeList(project.planned.slice(0, 3))}</ul></div>` : ''}
+        <div class="project-actions">
+          <a class="primary-link" href="project.html?id=${project.id}">${isBuilding ? 'View Details' : 'View Project'}</a>
+        </div>
+      </div>
+    </article>
+  `;
+}
+
+function renderProjectShowcase() {
+  const builtGrid = document.querySelector('#built-projects');
+  const buildingGrid = document.querySelector('#building-projects');
+  if (!builtGrid || !buildingGrid || !window.portfolioProjects) return;
+
+  builtGrid.innerHTML = window.portfolioProjects.filter((project) => project.category === 'built').map(projectCard).join('');
+  buildingGrid.innerHTML = window.portfolioProjects.filter((project) => project.category === 'building').map(projectCard).join('');
+}
+
+function renderScreenshotGallery(project) {
+  return `
+    <div class="screenshot-strip" tabindex="0" aria-label="Project screenshots">
+      ${project.screenshots.map((shot, index) => `
+        <figure class="screenshot-card">
+          <div class="screenshot-mock ${project.video ? 'has-video' : ''}">
+            ${project.video ? `<video class="screenshot-video" muted playsinline preload="metadata" src="${project.video}#t=${index + 1}"></video>` : ''}
+            <span>${String(index + 1).padStart(2, '0')}</span>
+            <strong>${shot}</strong>
+          </div>
+          <figcaption>${shot}</figcaption>
+        </figure>
+      `).join('')}
+    </div>
+  `;
+}
+
+function renderProjectDetail() {
+  const detail = document.querySelector('#project-detail');
+  if (!detail || !window.portfolioProjects) return;
+
+  const params = new URLSearchParams(window.location.search);
+  const project = window.portfolioProjects.find((item) => item.id === params.get('id')) || window.portfolioProjects[0];
+  document.title = `${project.title} | Anshika Bharti`;
+
+  detail.innerHTML = `
+    <section class="hero compact-hero project-hero reveal">
+      <div class="hero-content">
+        <a class="back-link" href="index.html#hero">Back to Portfolio</a>
+        <p class="eyebrow">${project.category === 'building' ? 'Currently Building' : 'Project Documentation'}</p>
+        <h1>${project.title}</h1>
+        <p>${project.overview}</p>
+        <div class="project-tags hero-tags">${makeTagList(project.tech)}</div>
+        <div class="hero-actions">
+          <a class="primary-link ${isAvailable(project.live) ? '' : 'disabled-link'}" href="${isAvailable(project.live) ? project.live : '#'}" target="_blank" rel="noreferrer" aria-disabled="${!isAvailable(project.live)}">Visit Website</a>
+          <a class="secondary-link ${isAvailable(project.repo) ? '' : 'disabled-link'}" href="${isAvailable(project.repo) ? project.repo : '#'}" target="_blank" rel="noreferrer" aria-disabled="${!isAvailable(project.repo)}">View Repository</a>
+          <a class="secondary-link" href="projects.html">Back to Projects</a>
+        </div>
+      </div>
+      ${projectThumbnail(project)}
+    </section>
+
+    <section class="section reveal">
+      <div class="detail-grid">
+        <article><h2>Problem Statement</h2><p>${project.problem}</p></article>
+        <article><h2>Objective</h2><p>${project.objective}</p></article>
+        <article><h2>Solution</h2><p>${project.solution}</p></article>
+        <article><h2>Impact</h2><p>${project.impact}</p></article>
+      </div>
+    </section>
+
+    <section class="section reveal">
+      <div class="section-heading">
+        <h2>Demo Video</h2>
+        <p>${project.video ? 'Playable project demo embedded directly on the page.' : 'Demo video will be added as the build matures.'}</p>
+      </div>
+      ${project.video ? `<video class="demo-video" controls preload="metadata" src="${project.video}"></video>` : '<div class="empty-state">Demo video coming soon.</div>'}
+    </section>
+
+    <section class="section reveal">
+      <div class="section-heading">
+        <h2>Project Screenshots</h2>
+        <p>A horizontal gallery for the key project screens and flows.</p>
+      </div>
+      ${renderScreenshotGallery(project)}
+    </section>
+
+    <section class="section reveal">
+      <div class="section-heading">
+        <h2>Features</h2>
+        <p>Core capabilities and user-facing functionality.</p>
+      </div>
+      <div class="feature-grid">${project.features.map((feature) => `<article class="feature-card">${feature}</article>`).join('')}</div>
+    </section>
+
+    <section class="section reveal">
+      <div class="section-heading">
+        <h2>Technical Details</h2>
+        <p>Architecture notes across frontend, backend, data, APIs, and model logic.</p>
+      </div>
+      <div class="technical-grid">
+        ${Object.entries(project.technical).map(([label, value]) => `
+          <article class="technical-card">
+            <h3>${label === 'ml' ? 'Machine Learning / Algorithms' : label.charAt(0).toUpperCase() + label.slice(1)}</h3>
+            <p>${value}</p>
+          </article>
+        `).join('')}
+      </div>
+    </section>
+
+    <section class="section reveal">
+      <div class="split-grid">
+        <article>
+          <h2>Challenges & Learnings</h2>
+          <ul class="clean-list">${makeList(project.challenges)}</ul>
+        </article>
+        <article>
+          <h2>Future Enhancements</h2>
+          <ul class="clean-list">${makeList(project.future)}</ul>
+        </article>
+      </div>
+    </section>
+  `;
+}
+
+function initTheme() {
+  const toggle = document.querySelector('.theme-toggle');
+  const savedTheme = localStorage.getItem('portfolio-theme');
+  if (savedTheme === 'dark') document.documentElement.dataset.theme = 'dark';
+
+  function syncLabel() {
+    if (!toggle) return;
+    toggle.textContent = document.documentElement.dataset.theme === 'dark' ? 'Light' : 'Dark';
+  }
+
+  syncLabel();
+  if (!toggle) return;
+
+  toggle.addEventListener('click', () => {
+    const nextTheme = document.documentElement.dataset.theme === 'dark' ? 'light' : 'dark';
+    document.documentElement.dataset.theme = nextTheme;
+    localStorage.setItem('portfolio-theme', nextTheme);
+    syncLabel();
   });
 }
 
-document.querySelectorAll('.nav button').forEach((button) => {
-  button.addEventListener('click', () => setActiveSection(button.dataset.section));
-});
+function initNavigation() {
+  const menuToggle = document.querySelector('.menu-toggle');
+  const nav = document.querySelector('.nav');
 
-renderProjects();
+  if (menuToggle && nav) {
+    menuToggle.addEventListener('click', () => {
+      const isOpen = nav.classList.toggle('open');
+      menuToggle.setAttribute('aria-expanded', String(isOpen));
+    });
+  }
+
+  document.querySelectorAll('a[href^="#"], a[href*="index.html#"]').forEach((link) => {
+    link.addEventListener('click', () => {
+      nav?.classList.remove('open');
+      menuToggle?.setAttribute('aria-expanded', 'false');
+    });
+  });
+}
+
+function initScrollReveal() {
+  const targets = document.querySelectorAll('.reveal');
+  if (!targets.length || !('IntersectionObserver' in window)) {
+    targets.forEach((target) => target.classList.add('visible'));
+    return;
+  }
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry) => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.12 });
+
+  targets.forEach((target) => observer.observe(target));
+}
+
+function initActiveNavigation() {
+  const sectionLinks = [...document.querySelectorAll('.nav a[href^="#"]')];
+  if (!sectionLinks.length || !('IntersectionObserver' in window)) return;
+
+  const sections = sectionLinks
+    .map((link) => document.querySelector(link.getAttribute('href')))
+    .filter(Boolean);
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry) => {
+      if (!entry.isIntersecting) return;
+      sectionLinks.forEach((link) => {
+        link.classList.toggle('active', link.getAttribute('href') === `#${entry.target.id}`);
+      });
+    });
+  }, { rootMargin: '-35% 0px -55% 0px', threshold: 0.01 });
+
+  sections.forEach((section) => observer.observe(section));
+}
+
 renderSkills();
 renderActivities();
 renderCertifications();
+renderProjectShowcase();
+renderProjectDetail();
+initTheme();
+initNavigation();
+initScrollReveal();
+initActiveNavigation();

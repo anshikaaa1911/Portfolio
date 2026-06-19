@@ -7,89 +7,148 @@
     <link rel="stylesheet" href="styles.css" />
   </head>
   <body>
-    <div class="container">
-      <header>
-        <h2>Anshika Bharti</h2>
-        <nav class="nav" aria-label="Portfolio sections">
-          <button type="button" class="active" data-section="about">About</button>
-          <button type="button" data-section="projects">Projects</button>
-          <button type="button" data-section="skills">Skills</button>
-          <button type="button" data-section="co-curricular">Co-curriculars</button>
-          <button type="button" data-section="certifications">Certifications</button>
-          <button type="button" data-section="contact">Contact</button>
-          <a href="public/resume.pdf" target="_blank" rel="noreferrer">Resume</a>
-        </nav>
-      </header>
+    <header class="site-header">
+      <a class="brand" href="#hero" aria-label="Anshika Bharti home">Anshika Bharti</a>
+      <button class="menu-toggle" type="button" aria-label="Toggle navigation" aria-expanded="false">Menu</button>
+      <nav class="nav" aria-label="Portfolio sections">
+        <a href="#about">About</a>
+        <a href="#education">Education</a>
+        <a href="#experience">Experience</a>
+        <a href="#skills">Skills</a>
+        <a href="#certifications">Certifications</a>
+        <a href="#leadership">Leadership</a>
+        <a href="#achievements">Achievements</a>
+        <a class="nav-projects" href="projects.html">Projects</a>
+        <a href="#contact">Contact</a>
+        <a href="#resume">Resume</a>
+      </nav>
+      <div class="header-actions" aria-label="Profile links and theme">
+        <a class="icon-link" href="https://github.com/anshikaaa1911" target="_blank" rel="noreferrer" aria-label="GitHub profile">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 .5A12 12 0 0 0 8.2 23.9c.6.1.8-.2.8-.6v-2.1c-3.3.7-4-1.4-4-1.4-.6-1.4-1.4-1.8-1.4-1.8-1.1-.8.1-.8.1-.8 1.2.1 1.9 1.3 1.9 1.3 1.1 1.9 2.9 1.3 3.5 1 .1-.8.4-1.3.8-1.6-2.6-.3-5.4-1.3-5.4-5.9 0-1.3.5-2.4 1.2-3.2-.1-.3-.5-1.6.1-3.2 0 0 1-.3 3.3 1.2a11.4 11.4 0 0 1 6 0C18 4.3 19 4.6 19 4.6c.6 1.6.2 2.9.1 3.2.8.8 1.2 1.9 1.2 3.2 0 4.6-2.8 5.6-5.5 5.9.5.4.9 1.1.9 2.2v4.2c0 .4.2.7.8.6A12 12 0 0 0 12 .5Z"/></svg>
+        </a>
+        <a class="icon-link" href="https://www.linkedin.com/in/anshika-bharti" target="_blank" rel="noreferrer" aria-label="LinkedIn profile">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4.98 3.5a2.5 2.5 0 1 1 0 5.01 2.5 2.5 0 0 1 0-5.01ZM3 9.6h4v12.9H3V9.6Zm6.4 0h3.8v1.8h.1c.5-1 1.9-2.1 3.8-2.1 4.1 0 4.9 2.7 4.9 6.2v7h-4v-6.2c0-1.5 0-3.4-2.1-3.4s-2.4 1.6-2.4 3.3v6.3h-4V9.6Z"/></svg>
+        </a>
+        <button class="theme-toggle" type="button" aria-label="Toggle dark mode">Dark</button>
+      </div>
+    </header>
 
-      <main>
-        <section class="hero">
-          <div class="hero-content">
-            <p class="eyebrow">Artificial Intelligence and Data Science Undergraduate</p>
-            <h1>Hi, I'm Anshika Bharti</h1>
-            <p>
-              I build data-driven applications with Python, machine learning, and full-stack development,
-              with hands-on work in fraud awareness, recommendation systems, and scalable web platforms.
-            </p>
-          </div>
-        </section>
-
-        <section id="about" class="section dashboard-section">
-          <h3>About Me</h3>
-          <p class="muted-copy">
-            Hi, I'm Anshika, a Computer Science and specialization in Artificial Intelligence and Data Science undergraduate passionate about building intelligent systems and scalable software solutions. My expertise spans C++, Data Structures & Algorithms (DSA), Python, Machine Learning, Data Analytics, Statistics, and Full-Stack Development, enabling me to tackle complex problems with both analytical and engineering approaches.
+    <main class="container">
+      <section id="hero" class="hero reveal">
+        <div class="hero-content">
+          <p class="eyebrow">Artificial Intelligence and Data Science Undergraduate</p>
+          <h1>Hi, I'm Anshika Bharti</h1>
+          <p>
+            I build data-driven applications with Python, machine learning, and full-stack development,
+            with hands-on work in fraud awareness, recommendation systems, and scalable web platforms.
           </p>
-          <p class="muted-copy">
-            I enjoy designing efficient algorithms, optimizing system performance, and developing applications that solve real-world challenges. My interests include Machine Learning, Generative AI, Agentic AI, Recommendation Systems, Fraud Detection, Cybersecurity, and Data-Driven User Experiences. I am particularly fascinated by how intelligent agents and large language models can automate decision-making, enhance productivity, and create impactful user experiences.
-          </p>
-          <p class="muted-copy">
-            Through hands-on projects, research, and development experience, I have built machine learning models, developed full-stack applications, implemented recommendation systems, and explored AI-powered solutions. Alongside my AI journey, I actively strengthen my problem-solving skills through Data Structures and Algorithms in C++, focusing on writing efficient, scalable, and production-ready code.
-          </p>
-          <p class="muted-copy">
-            I am constantly learning, experimenting, and pushing my boundaries in Software Engineering, Artificial Intelligence, Generative AI, and Agentic AI, with the goal of building innovative technology that creates meaningful real-world impact.
-          </p>
-          <div class="experience-card">
-            <div>
-              <p class="eyebrow">Experience</p>
-              <h4>Software Development Engineering Intern - RepCard Private Limited</h4>
-            </div>
-            <p>June 2025 - July 2025</p>
+          <div class="hero-actions">
+            <a class="primary-link" href="projects.html">View Projects</a>
+            <a class="secondary-link" href="#contact">Contact Me</a>
           </div>
-        </section>
+        </div>
+      </section>
 
-        <section id="projects" class="section dashboard-section" hidden>
-          <div class="section-heading">
-            <h3>Projects</h3>
-            <p>Featured AI, ML, and full-stack projects with concise summaries and source links.</p>
+      <section id="about" class="section dashboard-section reveal">
+        <div class="section-heading">
+          <h2>About Me</h2>
+          <p>AI, data science, software engineering, and practical problem solving.</p>
+        </div>
+        <p class="muted-copy">
+          Hi, I'm Anshika, a Computer Science undergraduate specializing in Artificial Intelligence and Data Science. My expertise spans C++, Data Structures & Algorithms, Python, Machine Learning, Data Analytics, Statistics, and Full-Stack Development.
+        </p>
+        <p class="muted-copy">
+          I enjoy designing efficient algorithms, optimizing system performance, and developing applications that solve real-world challenges. My interests include Machine Learning, Generative AI, Agentic AI, Recommendation Systems, Fraud Detection, Cybersecurity, and Data-Driven User Experiences.
+        </p>
+      </section>
+
+      <section id="education" class="section dashboard-section reveal">
+        <div class="section-heading">
+          <h2>Education</h2>
+          <p>Academic foundation in computer science, AI, and data-driven engineering.</p>
+        </div>
+        <div class="timeline">
+          <article class="timeline-card">
+            <p class="eyebrow">Undergraduate</p>
+            <h3>Computer Science - Artificial Intelligence and Data Science</h3>
+            <p class="muted-copy">Focused on algorithms, machine learning, statistics, software development, and applied AI systems.</p>
+          </article>
+        </div>
+      </section>
+
+      <section id="experience" class="section dashboard-section reveal">
+        <div class="section-heading">
+          <h2>Experience / Internship</h2>
+          <p>Practical engineering experience across software development workflows.</p>
+        </div>
+        <div class="experience-card">
+          <div>
+            <p class="eyebrow">June 2025 - July 2025</p>
+            <h3>Software Development Engineering Intern - RepCard Private Limited</h3>
+            <p class="muted-copy">Worked on production-oriented development tasks, strengthening full-stack implementation, debugging, and collaborative engineering habits.</p>
           </div>
-          <div class="projects-grid" id="projects-grid"></div>
-        </section>
+        </div>
+      </section>
 
-        <section id="skills" class="section dashboard-section" hidden>
-          <h3>Skills</h3>
-          <div class="skills-list" id="skills-list"></div>
-        </section>
+      <section id="skills" class="section dashboard-section reveal">
+        <div class="section-heading">
+          <h2>Skills</h2>
+          <p>Technical tools grouped by the way I use them in projects.</p>
+        </div>
+        <div class="skills-list" id="skills-list"></div>
+      </section>
 
-        <section id="co-curricular" class="section dashboard-section" hidden>
-          <h3>Co-curriculars</h3>
-          <div class="co-curricular-list" id="co-curricular-list"></div>
-        </section>
+      <section id="certifications" class="section dashboard-section reveal">
+        <div class="section-heading">
+          <h2>Certifications</h2>
+          <p>Structured learning across algorithms, analytics, and applied AI.</p>
+        </div>
+        <div class="certifications-list" id="certifications-list"></div>
+      </section>
 
-        <section id="certifications" class="section dashboard-section" hidden>
-          <h3>Certifications</h3>
-          <div class="certifications-list" id="certifications-list"></div>
-        </section>
+      <section id="leadership" class="section dashboard-section reveal">
+        <div class="section-heading">
+          <h2>Leadership & Co-Curricular Activities</h2>
+          <p>Communication, organizing, debate, and fast-paced collaboration.</p>
+        </div>
+        <div class="co-curricular-list" id="co-curricular-list"></div>
+      </section>
 
-        <section id="contact" class="section dashboard-section" hidden>
-          <h3>Contact</h3>
-          <div class="contact-links">
-            <a href="mailto:anshikabharti1911@gmail.com">anshikabharti1911@gmail.com</a>
-            <a href="https://github.com/anshikaaa1911" target="_blank" rel="noreferrer">GitHub</a>
-            <a href="https://www.linkedin.com/in/anshika-bharti" target="_blank" rel="noreferrer">LinkedIn</a>
-          </div>
-        </section>
-      </main>
-    </div>
+      <section id="achievements" class="section dashboard-section reveal">
+        <div class="section-heading">
+          <h2>Achievements</h2>
+          <p>Highlights from competitions, technical work, and campus contribution.</p>
+        </div>
+        <div class="achievement-grid">
+          <article class="metric-card"><strong>Multiple</strong><span>Debate competition wins</span></article>
+          <article class="metric-card"><strong>3+</strong><span>Built full-stack and AI projects</span></article>
+          <article class="metric-card"><strong>2025-26</strong><span>JYC Literary and Debating Coordinator</span></article>
+        </div>
+      </section>
 
+      <section id="contact" class="section dashboard-section reveal">
+        <div class="section-heading">
+          <h2>Contact</h2>
+          <p>Open to internships, collaborations, and AI/software project conversations.</p>
+        </div>
+        <div class="contact-links">
+          <a href="mailto:anshikabharti1911@gmail.com">anshikabharti1911@gmail.com</a>
+          <a href="https://github.com/anshikaaa1911" target="_blank" rel="noreferrer">GitHub</a>
+          <a href="https://www.linkedin.com/in/anshika-bharti" target="_blank" rel="noreferrer">LinkedIn</a>
+        </div>
+      </section>
+
+      <section id="resume" class="section dashboard-section resume-section reveal">
+        <div>
+          <p class="eyebrow">Resume</p>
+          <h2>Download or view my resume</h2>
+          <p class="muted-copy">A concise snapshot of my education, skills, project work, and professional experience.</p>
+        </div>
+        <a class="primary-link" href="public/resume.pdf" target="_blank" rel="noreferrer">Open Resume</a>
+      </section>
+    </main>
+
+    <script src="project-data.js"></script>
     <script src="script.js"></script>
   </body>
 </html>
