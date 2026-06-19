@@ -108,9 +108,11 @@ function projectThumbnail(project) {
   return `
     <div class="project-thumb ${vidSrc ? 'has-media' : ''}" aria-label="${project.thumbnailLabel}">
       ${media}
-      <div class="thumb-window">
-        <span></span><span></span><span></span>
-      </div>
+      ${project.category === 'built' ? '' : `
+        <div class="thumb-window">
+          <span></span><span></span><span></span>
+        </div>
+      `}
       <strong>${project.shortTitle}</strong>
       <small>${project.thumbnailLabel}</small>
     </div>
