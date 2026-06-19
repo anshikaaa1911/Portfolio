@@ -207,11 +207,39 @@ main{
 
 .page-shell{padding-top:118px}
 
+/* ── Hero: two-column layout with photo on the right ── */
 .hero{
   display:grid;
+  grid-template-columns:minmax(0,1fr) 280px;
+  gap:48px;
   min-height:calc(100vh - 100px);
   align-items:center;
   padding:54px 0 44px;
+}
+
+/* ── Profile photo ── */
+.hero-photo{
+  margin:0;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+}
+
+.hero-photo img{
+  width:100%;
+  max-width:280px;
+  aspect-ratio:1/1;
+  object-fit:cover;
+  object-position:top center;
+  border-radius:50%;
+  border:4px solid var(--soft-alt);
+  box-shadow:0 16px 48px rgba(200,79,124,0.28), 0 0 0 8px rgba(200,79,124,0.08);
+  transition:transform .3s ease, box-shadow .3s ease;
+}
+
+.hero-photo img:hover{
+  transform:scale(1.03);
+  box-shadow:0 22px 60px rgba(200,79,124,0.36), 0 0 0 10px rgba(200,79,124,0.1);
 }
 
 .compact-hero{
@@ -761,9 +789,22 @@ h1,h2,h3,p{letter-spacing:0}
     padding-top:148px;
   }
 
+  /* Stack hero vertically on mobile — photo above text */
   .hero{
+    grid-template-columns:1fr;
+    grid-template-rows:auto auto;
     min-height:auto;
     padding-top:32px;
+    gap:28px;
+  }
+
+  /* Photo comes first on mobile */
+  .hero-photo{
+    order:-1;
+  }
+
+  .hero-photo img{
+    max-width:180px;
   }
 
   .section{

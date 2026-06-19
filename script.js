@@ -88,12 +88,25 @@ function renderCertifications() {
 }
 
 function projectThumbnail(project) {
-  const media = project.video
-    ? `<video class="thumb-video" muted playsinline preload="metadata" src="${project.video}#t=0.5"></video>`
+  const vidSrc    = project.video?.src || project.video || '';
+  const doAutoplay = project.video?.autoplay !== false; // default true for plain strings
+
+  // Render autoplay + loop directly as HTML attributes — browsers require
+  // these to be present at parse time, not just set via JS afterwards.
+  const media = vidSrc
+    ? `<video
+         class="thumb-video"
+         src="${vidSrc}"
+         ${doAutoplay ? 'autoplay' : ''}
+         muted
+         loop
+         playsinline
+         preload="auto"
+       ></video>`
     : '';
 
   return `
-    <div class="project-thumb ${project.video ? 'has-media' : ''}" aria-label="${project.thumbnailLabel}">
+    <div class="project-thumb ${vidSrc ? 'has-media' : ''}" aria-label="${project.thumbnailLabel}">
       ${media}
       <div class="thumb-window">
         <span></span><span></span><span></span>
@@ -128,17 +141,20 @@ function renderProjectShowcase() {
   const buildingGrid = document.querySelector('#building-projects');
   if (!builtGrid || !buildingGrid || !window.portfolioProjects) return;
 
-  builtGrid.innerHTML = window.portfolioProjects.filter((project) => project.category === 'built').map(projectCard).join('');
-  buildingGrid.innerHTML = window.portfolioProjects.filter((project) => project.category === 'building').map(projectCard).join('');
+  builtGrid.innerHTML = window.portfolioProjects.filter((p) => p.category === 'built').map(projectCard).join('');
+  buildingGrid.innerHTML = window.portfolioProjects.filter((p) => p.category === 'building').map(projectCard).join('');
 }
 
 function renderScreenshotGallery(project) {
+  const vidSrc = project.video?.src || project.video || '';
   return `
     <div class="screenshot-strip" tabindex="0" aria-label="Project screenshots">
       ${project.screenshots.map((shot, index) => `
         <figure class="screenshot-card">
-          <div class="screenshot-mock ${project.video ? 'has-video' : ''}">
-            ${project.video ? `<video class="screenshot-video" muted playsinline preload="metadata" src="${project.video}#t=${index + 1}"></video>` : ''}
+          <div class="screenshot-mock ${vidSrc ? 'has-video' : ''}">
+            ${vidSrc
+              ? `<video class="screenshot-video" src="${vidSrc}" autoplay muted loop playsinline preload="auto"></video>`
+              : ''}
             <span>${String(index + 1).padStart(2, '0')}</span>
             <strong>${shot}</strong>
           </div>
@@ -155,6 +171,7 @@ function renderProjectDetail() {
 
   const params = new URLSearchParams(window.location.search);
   const project = window.portfolioProjects.find((item) => item.id === params.get('id')) || window.portfolioProjects[0];
+  const vidSrc = project.video?.src || project.video || '';
   document.title = `${project.title} | Anshika Bharti`;
 
   detail.innerHTML = `
@@ -186,9 +203,11 @@ function renderProjectDetail() {
     <section class="section reveal">
       <div class="section-heading">
         <h2>Demo Video</h2>
-        <p>${project.video ? 'Playable project demo embedded directly on the page.' : 'Demo video will be added as the build matures.'}</p>
+        <p>${vidSrc ? 'Playable project demo embedded directly on the page.' : 'Demo video will be added as the build matures.'}</p>
       </div>
-      ${project.video ? `<video class="demo-video" controls preload="metadata" src="${project.video}"></video>` : '<div class="empty-state">Demo video coming soon.</div>'}
+      ${vidSrc
+        ? `<video class="demo-video" src="${vidSrc}" controls autoplay muted loop playsinline preload="auto"></video>`
+        : '<div class="empty-state">Demo video coming soon.</div>'}
     </section>
 
     <section class="section reveal">
@@ -237,6 +256,7 @@ function renderProjectDetail() {
   `;
 }
 
+/* ─── THEME ──────────────────────────────────────────────────── */
 function initTheme() {
   const toggle = document.querySelector('.theme-toggle');
   const savedTheme = localStorage.getItem('portfolio-theme');
@@ -258,29 +278,376 @@ function initTheme() {
   });
 }
 
+/* ─── NAVIGATION ─────────────────────────────────────────────────
+   Layout after this change:
+   [Anshika Bharti]  ←————————————————→  [Projects] [Contact] [Resume]  [GH] [LI] [Dark]  [More ▾]
+                                                                                              └─ About
+                                                                                              └─ Education
+                                                                                              └─ Experience
+                                                                                              └─ Skills
+                                                                                              └─ Certifications
+                                                                                              └─ Leadership
+                                                                                              └─ Achievements
+──────────────────────────────────────────────────────────────── */
 function initNavigation() {
+  const header = document.querySelector('header') || document.querySelector('.header');
+  const existingNav = document.querySelector('.nav');
   const menuToggle = document.querySelector('.menu-toggle');
-  const nav = document.querySelector('.nav');
 
-  if (menuToggle && nav) {
-    menuToggle.addEventListener('click', () => {
-      const isOpen = nav.classList.toggle('open');
-      menuToggle.setAttribute('aria-expanded', String(isOpen));
-    });
+  // ── Primary nav links (always visible on desktop) ──
+  const primaryLinks = [
+    { label: 'Projects',  href: '#projects' },
+    { label: 'Contact',   href: '#contact'  },
+    { label: 'Resume',    href: './resume1.pdf', external: true }
+  ];
+
+  // ── Secondary links that collapse into the "More" dropdown ──
+  const secondaryLinks = [
+    { label: 'About',          href: '#about'          },
+    { label: 'Education',      href: '#education'      },
+    { label: 'Experience',     href: '#experience'     },
+    { label: 'Skills',         href: '#skills'         },
+    { label: 'Certifications', href: '#certifications' },
+    { label: 'Leadership',     href: '#leadership'     },
+    { label: 'Achievements',   href: '#achievements'   }
+  ];
+
+  if (!header) return;
+
+  // Clear whatever nav markup currently exists so we rebuild cleanly
+  if (existingNav) existingNav.remove();
+  if (menuToggle) menuToggle.remove();
+
+  // ── Build the new nav ──
+  const nav = document.createElement('nav');
+  nav.className = 'nav';
+  nav.setAttribute('aria-label', 'Main navigation');
+
+  // Primary links
+  const primaryGroup = document.createElement('ul');
+  primaryGroup.className = 'nav-primary';
+  primaryLinks.forEach(({ label, href, external }) => {
+    const li  = document.createElement('li');
+    const a   = document.createElement('a');
+    a.href        = href;
+    a.textContent = label;
+    if (external) { a.target = '_blank'; a.rel = 'noreferrer'; }
+    li.appendChild(a);
+    primaryGroup.appendChild(li);
+  });
+
+  // "More" dropdown trigger
+  const moreItem = document.createElement('li');
+  moreItem.className = 'nav-more';
+  moreItem.innerHTML = `
+    <button class="more-btn" aria-haspopup="true" aria-expanded="false">
+      More <span class="more-caret" aria-hidden="true">▾</span>
+    </button>
+    <ul class="more-dropdown" role="menu">
+      ${secondaryLinks.map(({ label, href }) =>
+        `<li role="none"><a role="menuitem" href="${href}">${label}</a></li>`
+      ).join('')}
+    </ul>
+  `;
+
+  primaryGroup.appendChild(moreItem);
+  nav.appendChild(primaryGroup);
+  header.appendChild(nav);
+
+  // ── Dropdown open/close logic ──
+  const moreBtn      = moreItem.querySelector('.more-btn');
+  const moreDropdown = moreItem.querySelector('.more-dropdown');
+
+  function openDropdown() {
+    moreDropdown.classList.add('open');
+    moreBtn.setAttribute('aria-expanded', 'true');
+  }
+  function closeDropdown() {
+    moreDropdown.classList.remove('open');
+    moreBtn.setAttribute('aria-expanded', 'false');
+  }
+  function toggleDropdown() {
+    moreDropdown.classList.contains('open') ? closeDropdown() : openDropdown();
   }
 
-  document.querySelectorAll('a[href^="#"], a[href*="index.html#"]').forEach((link) => {
-    link.addEventListener('click', () => {
-      nav?.classList.remove('open');
-      menuToggle?.setAttribute('aria-expanded', 'false');
+  // Hover (desktop)
+  moreItem.addEventListener('mouseenter', openDropdown);
+  moreItem.addEventListener('mouseleave', closeDropdown);
+
+  // Click (touch / keyboard)
+  moreBtn.addEventListener('click', (e) => {
+    e.stopPropagation();
+    toggleDropdown();
+  });
+
+  // Close when clicking outside
+  document.addEventListener('click', (e) => {
+    if (!moreItem.contains(e.target)) closeDropdown();
+  });
+
+  // Close on Escape
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') closeDropdown();
+  });
+
+  // Close dropdown when any link inside it is clicked
+  moreDropdown.querySelectorAll('a').forEach((a) => {
+    a.addEventListener('click', closeDropdown);
+  });
+
+  // Mobile: hamburger toggle for the whole primary group
+  const hamburger = document.createElement('button');
+  hamburger.className = 'menu-toggle';
+  hamburger.setAttribute('aria-label', 'Toggle menu');
+  hamburger.setAttribute('aria-expanded', 'false');
+  hamburger.innerHTML = '<span></span><span></span><span></span>';
+  header.appendChild(hamburger);
+
+  hamburger.addEventListener('click', () => {
+    const isOpen = primaryGroup.classList.toggle('mobile-open');
+    hamburger.setAttribute('aria-expanded', String(isOpen));
+  });
+
+  // Close mobile menu on any nav link click
+  nav.querySelectorAll('a').forEach((a) => {
+    a.addEventListener('click', () => {
+      primaryGroup.classList.remove('mobile-open');
+      hamburger.setAttribute('aria-expanded', 'false');
     });
   });
 }
 
+/* ─── CSS injected at runtime for the new nav layout ────────────
+   Add this to your stylesheet instead if you prefer — keeping it
+   here means zero changes to your HTML/CSS files are needed.
+──────────────────────────────────────────────────────────────── */
+(function injectNavStyles() {
+  if (document.getElementById('nav-override-styles')) return;
+  const style = document.createElement('style');
+  style.id = 'nav-override-styles';
+  style.textContent = `
+    /* ── Header layout ── */
+    header,
+    .header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 2rem;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      gap: 1rem;
+    }
+
+    /* Logo stays left — no change needed, flex handles it */
+
+    /* ── Primary nav group (right-aligned) ── */
+    .nav {
+      margin-left: auto;   /* push everything to the right */
+    }
+
+    .nav-primary {
+      display: flex;
+      align-items: center;
+      gap: 0.25rem;
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      flex-wrap: nowrap;
+    }
+
+    .nav-primary > li > a {
+      padding: 0.45rem 0.85rem;
+      border-radius: 6px;
+      font-size: 0.9rem;
+      font-weight: 500;
+      text-decoration: none;
+      white-space: nowrap;
+      transition: background 0.15s, color 0.15s;
+    }
+
+    .nav-primary > li > a:hover,
+    .nav-primary > li > a.active {
+      background: rgba(0,0,0,0.06);
+    }
+
+    [data-theme="dark"] .nav-primary > li > a:hover,
+    [data-theme="dark"] .nav-primary > li > a.active {
+      background: rgba(255,255,255,0.1);
+    }
+
+    /* ── More dropdown ── */
+    .nav-more {
+      position: relative;
+      list-style: none;
+    }
+
+    .more-btn {
+      display: flex;
+      align-items: center;
+      gap: 0.3rem;
+      padding: 0.45rem 0.85rem;
+      border: none;
+      background: transparent;
+      font-size: 0.9rem;
+      font-weight: 500;
+      cursor: pointer;
+      border-radius: 6px;
+      white-space: nowrap;
+      transition: background 0.15s;
+      color: inherit;
+    }
+
+    .more-btn:hover {
+      background: rgba(0,0,0,0.06);
+    }
+
+    [data-theme="dark"] .more-btn:hover {
+      background: rgba(255,255,255,0.1);
+    }
+
+    .more-caret {
+      font-size: 0.7rem;
+      transition: transform 0.2s;
+    }
+
+    .more-btn[aria-expanded="true"] .more-caret {
+      transform: rotate(180deg);
+    }
+
+    .more-dropdown {
+      display: none;
+      position: absolute;
+      right: 0;
+      top: calc(100% + 6px);
+      min-width: 170px;
+      border-radius: 10px;
+      overflow: hidden;
+      box-shadow: 0 8px 24px rgba(0,0,0,0.12);
+      list-style: none;
+      margin: 0;
+      padding: 0.35rem 0;
+      background: var(--bg, #fff);
+      border: 1px solid rgba(0,0,0,0.08);
+      z-index: 200;
+    }
+
+    [data-theme="dark"] .more-dropdown {
+      background: var(--bg-dark, #1e1e2e);
+      border-color: rgba(255,255,255,0.1);
+      box-shadow: 0 8px 24px rgba(0,0,0,0.4);
+    }
+
+    .more-dropdown.open {
+      display: block;
+      animation: dropIn 0.18s ease;
+    }
+
+    @keyframes dropIn {
+      from { opacity: 0; transform: translateY(-6px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    .more-dropdown li a {
+      display: block;
+      padding: 0.55rem 1.1rem;
+      font-size: 0.88rem;
+      font-weight: 500;
+      text-decoration: none;
+      color: inherit;
+      transition: background 0.12s;
+    }
+
+    .more-dropdown li a:hover {
+      background: rgba(0,0,0,0.05);
+    }
+
+    [data-theme="dark"] .more-dropdown li a:hover {
+      background: rgba(255,255,255,0.08);
+    }
+
+    /* ── Mobile: hamburger visible, primary links stacked ── */
+    .menu-toggle {
+      display: none;
+      flex-direction: column;
+      gap: 5px;
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding: 0.4rem;
+      margin-left: 0.5rem;
+    }
+
+    .menu-toggle span {
+      display: block;
+      width: 22px;
+      height: 2px;
+      background: currentColor;
+      border-radius: 2px;
+      transition: transform 0.2s, opacity 0.2s;
+    }
+
+    @media (max-width: 700px) {
+      .menu-toggle {
+        display: flex;
+      }
+
+      .nav-primary {
+        display: none;
+        position: absolute;
+        top: 100%;
+        right: 0;
+        left: 0;
+        flex-direction: column;
+        align-items: stretch;
+        gap: 0;
+        background: var(--bg, #fff);
+        border-top: 1px solid rgba(0,0,0,0.08);
+        padding: 0.5rem 0;
+        box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+      }
+
+      [data-theme="dark"] .nav-primary {
+        background: var(--bg-dark, #1e1e2e);
+      }
+
+      .nav-primary.mobile-open {
+        display: flex;
+      }
+
+      .nav-primary > li > a,
+      .more-btn {
+        display: block;
+        padding: 0.75rem 1.5rem;
+        border-radius: 0;
+        font-size: 1rem;
+        width: 100%;
+        text-align: left;
+      }
+
+      .more-dropdown {
+        position: static;
+        box-shadow: none;
+        border: none;
+        border-top: 1px solid rgba(0,0,0,0.06);
+        border-radius: 0;
+        padding: 0;
+      }
+
+      .more-dropdown li a {
+        padding-left: 2.25rem;
+        font-size: 0.92rem;
+      }
+    }
+  `;
+  document.head.appendChild(style);
+})();
+
+/* ─── SCROLL REVEAL ──────────────────────────────────────────── */
 function initScrollReveal() {
   const targets = document.querySelectorAll('.reveal');
   if (!targets.length || !('IntersectionObserver' in window)) {
-    targets.forEach((target) => target.classList.add('visible'));
+    targets.forEach((t) => t.classList.add('visible'));
     return;
   }
 
@@ -293,9 +660,10 @@ function initScrollReveal() {
     });
   }, { threshold: 0.12 });
 
-  targets.forEach((target) => observer.observe(target));
+  targets.forEach((t) => observer.observe(t));
 }
 
+/* ─── ACTIVE NAV HIGHLIGHT ───────────────────────────────────── */
 function initActiveNavigation() {
   const sectionLinks = [...document.querySelectorAll('.nav a[href^="#"]')];
   if (!sectionLinks.length || !('IntersectionObserver' in window)) return;
@@ -313,15 +681,38 @@ function initActiveNavigation() {
     });
   }, { rootMargin: '-35% 0px -55% 0px', threshold: 0.01 });
 
-  sections.forEach((section) => observer.observe(section));
+  sections.forEach((s) => observer.observe(s));
 }
 
+/* ─── VIDEO AUTOPLAY ─────────────────────────────────────────── */
+// Attributes (autoplay, muted, loop, playsinline) are already written into
+// the HTML by projectThumbnail() and renderProjectDetail(). This function
+// calls .load() + .play() explicitly because browsers don't always honour
+// those attributes on elements injected via innerHTML after page load.
+function initProjectVideos() {
+  document.querySelectorAll('video[autoplay]').forEach(el => {
+    el.muted       = true;   // must be a property, not just an attribute
+    el.playsInline = true;
+    el.load();               // re-parse src set by innerHTML
+    el.play().catch(() => {
+      // Blocked by browser autoplay policy — will play on first user gesture
+    });
+  });
+}
+
+/* ─── INIT ───────────────────────────────────────────────────── */
 renderSkills();
 renderActivities();
 renderCertifications();
 renderProjectShowcase();
 renderProjectDetail();
 initTheme();
-initNavigation();
+initNavigation();      // must run after DOM is ready
 initScrollReveal();
 initActiveNavigation();
+
+if (document.readyState === 'loading') {
+  document.addEventListener('DOMContentLoaded', initProjectVideos);
+} else {
+  initProjectVideos();
+}

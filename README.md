@@ -46,7 +46,7 @@ portfolio/
 ├── script.js           # Navigation, rendering, theme, and interactions
 │
 ├── public/
-│   └── resume.pdf      # Downloadable resume
+│   └── resume1.pdf      # Downloadable resume
 │
 └── README.md           # Project documentation
 ```
