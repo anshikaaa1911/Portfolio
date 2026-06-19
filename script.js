@@ -140,7 +140,10 @@ function projectCard(project) {
 function renderProjectShowcase() {
   const builtGrid = document.querySelector('#built-projects');
   const buildingGrid = document.querySelector('#building-projects');
-  if (!window.portfolioProjects) return;
+  if (!window.portfolioProjects) {
+    setTimeout(renderProjectShowcase, 50);
+    return;
+  }
 
   if (builtGrid) {
     builtGrid.innerHTML = window.portfolioProjects.filter((p) => p.category === 'built').map(projectCard).join('');
@@ -149,6 +152,9 @@ function renderProjectShowcase() {
   if (buildingGrid) {
     buildingGrid.innerHTML = window.portfolioProjects.filter((p) => p.category === 'building').map(projectCard).join('');
   }
+
+  initScrollReveal();
+  initProjectVideos();
 }
 
 function renderScreenshotGallery(project) {

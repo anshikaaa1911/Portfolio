@@ -455,11 +455,12 @@ h1,h2,h3,p{letter-spacing:0}
 .projects-grid{
   display:flex;
   flex-direction:row;
-  gap:0;
+  gap:22px;
   overflow-x:auto;
   scroll-snap-type:x mandatory;
   -webkit-overflow-scrolling:touch;
-  padding-bottom:8px;
+  padding:4px 8px 14px;
+  scroll-padding-left:8px;
   /* hide scrollbar but keep scroll functional */
   scrollbar-width:none;
 }
@@ -479,20 +480,15 @@ h1,h2,h3,p{letter-spacing:0}
 
 .project-card{
   display:flex;
-  flex:0 0 min(360px,82vw);
+  flex:0 0 min(390px,82vw);
   flex-direction:column;
   overflow:hidden;
   border:none;
-  border-right:1px solid var(--line);
-  border-radius:0;
+  border-radius:8px;
   background:var(--surface);
-  box-shadow:none;
+  box-shadow:0 12px 26px rgba(69,54,47,0.08);
   scroll-snap-align:start;
   transition:transform .22s ease, box-shadow .22s ease;
-}
-
-.project-card:last-child{
-  border-right:none;
 }
 
 .project-card:hover{
