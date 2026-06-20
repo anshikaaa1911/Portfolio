@@ -138,55 +138,6 @@ window.portfolioProjects = [
     ]
   },
   {
-    id: 'grownet-trust-community-platform',
-    category: 'building',
-    title: 'GROWNET Trust-Based Community Platform',
-    shortTitle: 'GROWNET',
-    description: 'A scalable community platform being built around trust scoring, SOS alerts, and intelligent recommendations — designed to make local interaction safer and more reliable.',
-    thumbnailLabel: 'Trust Community Network',
-    tech: ['Trust Scoring', 'Recommendations', 'Safety Workflows', 'Scalable Design'],
-    video: {
-      src: '',
-      autoplay: false
-    },
-    live: '#',
-    repo: 'https://github.com/anshikaaa1911/GROWNET-Trust-Based-Community-Platform',
-    overview: 'GROWNET is a community platform that puts trust at the center of every interaction — using verifiable trust scores, emergency SOS workflows, and behavior-informed recommendations to make local collaboration safer and more human.',
-    problem: 'Community platforms suffer from low accountability, irrelevant content, and no safety net for urgent situations. When trust is unclear and recommendations are generic, people disengage — especially in high-stakes moments.',
-    objective: 'Design a platform where every community interaction is anchored to a trust layer — making it easier to know who to rely on, what to act on, and how to get help fast when it matters.',
-    solution: 'Designing a system with composable trust scoring, real-time SOS alert routing, community-informed recommendations, and transparent moderation — built to scale without sacrificing accountability.',
-    impact: 'Aims to turn anonymous community platforms into high-trust networks where people feel confident acting, helping, and connecting — even with strangers.',
-    features: [
-      'Trust score engine currently in development — composable, explainable, and tamper-resistant',
-      'Planned SOS alert workflows with priority routing and verified responder escalation',
-      'Community recommendation system surfacing relevant posts, people, and resources',
-      'Moderation and reporting architecture designed for scale without manual bottlenecks'
-    ],
-    planned: [
-      'Trust-based user profiles with visible, explainable score breakdowns',
-      'SOS and emergency support flow with geo-aware alert routing',
-      'Recommendation engine for community posts, resources, and trusted members',
-      'Moderation and reporting tools with configurable escalation rules'
-    ],
-    screenshots: ['Trust profile concept', 'SOS flow concept', 'Community feed concept'],
-    technical: {
-      frontend: 'Planned responsive dashboard for feed, trust profiles, alerts, recommendations, and community action flows.',
-      backend: 'Planned service layer handling users, trust score computation, alert lifecycle, moderation queues, and recommendation delivery.',
-      database: 'Planned schema for profiles, posts, trust signals, ratings, event logs, and alert records — optimized for real-time reads.',
-      apis: 'Planned REST APIs for all community actions, trust updates, SOS alert creation, moderation decisions, and recommendation retrieval.',
-      ml: 'Planned trust-ranking and recommendation algorithms using behavioral signals, peer ratings, activity history, and safety event patterns.'
-    },
-    challenges: [
-      'Building a trust score that feels fair, transparent, and hard to game — without becoming a social credit system.',
-      'Making SOS workflows fast enough to be useful in emergencies while maintaining identity verification and accountability.'
-    ],
-    future: [
-      'Pilot the trust model with a real community cohort to validate scoring fairness.',
-      'Add explainable trust indicators so users understand exactly what affects their score.',
-      'Scale alert routing and recommendations with stronger ranking algorithms and real usage data.'
-    ]
-  },
-  {
     id: 'prescription-digitization-system',
     category: 'building',
     title: 'Prescription Digitization System',
@@ -243,9 +194,58 @@ window.portfolioProjects = [
       'Introduce human review for ambiguous medicines, dosages, and instructions.',
       'Support batch processing for multi-page prescriptions and folder-level digitization workflows.'
     ]
+  },
+
+  {
+    id: 'grownet-trust-community-platform',
+    category: 'building',
+    title: 'GROWNET Trust-Based Community Platform',
+    shortTitle: 'GROWNET',
+    description: 'A scalable community platform being built around trust scoring, SOS alerts, and intelligent recommendations — designed to make local interaction safer and more reliable.',
+    thumbnailLabel: 'Trust Community Network',
+    tech: ['Trust Scoring', 'Recommendations', 'Safety Workflows', 'Scalable Design'],
+    video: {
+      src: '',
+      autoplay: false
+    },
+    live: '#',
+    repo: 'https://github.com/anshikaaa1911/GROWNET-Trust-Based-Community-Platform',
+    overview: 'GROWNET is a community platform that puts trust at the center of every interaction — using verifiable trust scores, emergency SOS workflows, and behavior-informed recommendations to make local collaboration safer and more human.',
+    problem: 'Community platforms suffer from low accountability, irrelevant content, and no safety net for urgent situations. When trust is unclear and recommendations are generic, people disengage — especially in high-stakes moments.',
+    objective: 'Design a platform where every community interaction is anchored to a trust layer — making it easier to know who to rely on, what to act on, and how to get help fast when it matters.',
+    solution: 'Designing a system with composable trust scoring, real-time SOS alert routing, community-informed recommendations, and transparent moderation — built to scale without sacrificing accountability.',
+    impact: 'Aims to turn anonymous community platforms into high-trust networks where people feel confident acting, helping, and connecting — even with strangers.',
+    features: [
+      'Trust score engine currently in development — composable, explainable, and tamper-resistant',
+      'Planned SOS alert workflows with priority routing and verified responder escalation',
+      'Community recommendation system surfacing relevant posts, people, and resources',
+      'Moderation and reporting architecture designed for scale without manual bottlenecks'
+    ],
+    planned: [
+      'Trust-based user profiles with visible, explainable score breakdowns',
+      'SOS and emergency support flow with geo-aware alert routing',
+      'Recommendation engine for community posts, resources, and trusted members',
+      'Moderation and reporting tools with configurable escalation rules'
+    ],
+    screenshots: ['Trust profile concept', 'SOS flow concept', 'Community feed concept'],
+    technical: {
+      frontend: 'Planned responsive dashboard for feed, trust profiles, alerts, recommendations, and community action flows.',
+      backend: 'Planned service layer handling users, trust score computation, alert lifecycle, moderation queues, and recommendation delivery.',
+      database: 'Planned schema for profiles, posts, trust signals, ratings, event logs, and alert records — optimized for real-time reads.',
+      apis: 'Planned REST APIs for all community actions, trust updates, SOS alert creation, moderation decisions, and recommendation retrieval.',
+      ml: 'Planned trust-ranking and recommendation algorithms using behavioral signals, peer ratings, activity history, and safety event patterns.'
+    },
+    challenges: [
+      'Building a trust score that feels fair, transparent, and hard to game — without becoming a social credit system.',
+      'Making SOS workflows fast enough to be useful in emergencies while maintaining identity verification and accountability.'
+    ],
+    future: [
+      'Pilot the trust model with a real community cohort to validate scoring fairness.',
+      'Add explainable trust indicators so users understand exactly what affects their score.',
+      'Scale alert routing and recommendations with stronger ranking algorithms and real usage data.'
+    ]
   }
 ];
-
 /* ─────────────────────────────────────────────────────────────────
    VIDEO AUTOPLAY HELPER
    Paste this into your main JS entry point (index.js / App.jsx / main.js).

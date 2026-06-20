@@ -1,4 +1,4 @@
-const skillGroups = [
+﻿const skillGroups = [
   {
     title: 'Machine Learning',
     items: ['Feature Engineering', 'Model Evaluation', 'Regression', 'Classification', 'Clustering', 'CNNs', 'XceptionNet']
@@ -91,7 +91,7 @@ function projectThumbnail(project) {
   const vidSrc    = project.video?.src || project.video || '';
   const doAutoplay = project.video?.autoplay !== false; // default true for plain strings
 
-  // Render autoplay + loop directly as HTML attributes — browsers require
+  // Render autoplay + loop directly as HTML attributes - browsers require
   // these to be present at parse time, not just set via JS afterwards.
   const media = vidSrc
     ? `<video
@@ -265,7 +265,7 @@ function renderProjectDetail() {
   `;
 }
 
-/* ─── THEME ──────────────────────────────────────────────────── */
+/* THEME */
 function initTheme() {
   const toggle = document.querySelector('.theme-toggle');
   const savedTheme = localStorage.getItem('portfolio-theme');
@@ -287,17 +287,7 @@ function initTheme() {
   });
 }
 
-/* ─── NAVIGATION ─────────────────────────────────────────────────
-   Layout after this change:
-   [Anshika Bharti]  ←————————————————→  [Projects] [Contact] [Resume]  [GH] [LI] [Dark]  [More ▾]
-                                                                                              └─ About
-                                                                                              └─ Education
-                                                                                              └─ Experience
-                                                                                              └─ Skills
-                                                                                              └─ Certifications
-                                                                                              └─ Leadership
-                                                                                              └─ Achievements
-──────────────────────────────────────────────────────────────── */
+/* NAVIGATION */
 function initNavigation() {
   const header = document.querySelector('header') || document.querySelector('.header');
   const existingNav = document.querySelector('.nav');
@@ -305,14 +295,14 @@ function initNavigation() {
   const currentPage = window.location.pathname.split('/').pop() || 'index.html';
   const anchorPrefix = currentPage === 'index.html' ? '' : 'index.html';
 
-  // ── Primary nav links (always visible on desktop) ──
+  // -- Primary nav links (always visible on desktop) --
   const primaryLinks = [
     { label: 'Projects',  href: 'projects.html' },
     { label: 'Contact',   href: `${anchorPrefix}#contact`  },
     { label: 'Resume',    href: 'public/RESUME1.pdf', external: true }
   ];
 
-  // ── Secondary links that collapse into the "More" dropdown ──
+  // -- Secondary links that collapse into the "More" dropdown --
   const secondaryLinks = [
     { label: 'Ongoing Projects', href: 'ongoing.html' },
     { label: 'About',          href: `${anchorPrefix}#about`          },
@@ -330,7 +320,7 @@ function initNavigation() {
   if (existingNav) existingNav.remove();
   if (menuToggle) menuToggle.remove();
 
-  // ── Build the new nav ──
+  // -- Build the new nav --
   const nav = document.createElement('nav');
   nav.className = 'nav';
   nav.setAttribute('aria-label', 'Main navigation');
@@ -353,7 +343,7 @@ function initNavigation() {
   moreItem.className = 'nav-more';
   moreItem.innerHTML = `
     <button class="more-btn" aria-haspopup="true" aria-expanded="false">
-      More <span class="more-caret" aria-hidden="true">▾</span>
+      More <span class="more-caret" aria-hidden="true">v</span>
     </button>
     <ul class="more-dropdown" role="menu">
       ${secondaryLinks.map(({ label, href }) =>
@@ -366,7 +356,7 @@ function initNavigation() {
   nav.appendChild(primaryGroup);
   header.appendChild(nav);
 
-  // ── Dropdown open/close logic ──
+  // -- Dropdown open/close logic --
   const moreBtn      = moreItem.querySelector('.more-btn');
   const moreDropdown = moreItem.querySelector('.more-dropdown');
 
@@ -429,16 +419,13 @@ function initNavigation() {
   });
 }
 
-/* ─── CSS injected at runtime for the new nav layout ────────────
-   Add this to your stylesheet instead if you prefer — keeping it
-   here means zero changes to your HTML/CSS files are needed.
-──────────────────────────────────────────────────────────────── */
+/* CSS injected at runtime for the new nav layout. */
 (function injectNavStyles() {
   if (document.getElementById('nav-override-styles')) return;
   const style = document.createElement('style');
   style.id = 'nav-override-styles';
   style.textContent = `
-    /* ── Header layout ── */
+    /* -- Header layout -- */
     header,
     .header {
       display: flex;
@@ -451,9 +438,9 @@ function initNavigation() {
       gap: 1rem;
     }
 
-    /* Logo stays left — no change needed, flex handles it */
+    /* Logo stays left - no change needed, flex handles it */
 
-    /* ── Primary nav group (right-aligned) ── */
+    /* -- Primary nav group (right-aligned) -- */
     .nav {
       margin-left: auto;   /* push everything to the right */
     }
@@ -488,7 +475,7 @@ function initNavigation() {
       background: rgba(255,255,255,0.1);
     }
 
-    /* ── More dropdown ── */
+    /* -- More dropdown -- */
     .nav-more {
       position: relative;
       list-style: none;
@@ -578,7 +565,7 @@ function initNavigation() {
       background: rgba(255,255,255,0.08);
     }
 
-    /* ── Mobile: hamburger visible, primary links stacked ── */
+    /* -- Mobile: hamburger visible, primary links stacked -- */
     .menu-toggle {
       display: none;
       flex-direction: column;
@@ -655,7 +642,7 @@ function initNavigation() {
   document.head.appendChild(style);
 })();
 
-/* ─── SCROLL REVEAL ──────────────────────────────────────────── */
+/* SCROLL REVEAL */
 function initScrollReveal() {
   const targets = document.querySelectorAll('.reveal');
   if (!targets.length || !('IntersectionObserver' in window)) {
@@ -675,7 +662,7 @@ function initScrollReveal() {
   targets.forEach((t) => observer.observe(t));
 }
 
-/* ─── ACTIVE NAV HIGHLIGHT ───────────────────────────────────── */
+/* ACTIVE NAV HIGHLIGHT */
 function initActiveNavigation() {
   const sectionLinks = [...document.querySelectorAll('.nav a[href^="#"]')];
   if (!sectionLinks.length || !('IntersectionObserver' in window)) return;
@@ -696,7 +683,7 @@ function initActiveNavigation() {
   sections.forEach((s) => observer.observe(s));
 }
 
-/* ─── VIDEO AUTOPLAY ─────────────────────────────────────────── */
+/* VIDEO AUTOPLAY */
 // Attributes (autoplay, muted, loop, playsinline) are already written into
 // the HTML by projectThumbnail() and renderProjectDetail(). This function
 // calls .load() + .play() explicitly because browsers don't always honour
@@ -707,12 +694,12 @@ function initProjectVideos() {
     el.playsInline = true;
     el.load();               // re-parse src set by innerHTML
     el.play().catch(() => {
-      // Blocked by browser autoplay policy — will play on first user gesture
+      // Blocked by browser autoplay policy; will play on first user gesture.
     });
   });
 }
 
-/* ─── INIT ───────────────────────────────────────────────────── */
+/* INIT */
 renderSkills();
 renderActivities();
 renderCertifications();
