@@ -336,6 +336,24 @@ h1,h2,h3,p{letter-spacing:0}
   line-height:1.68;
 }
 
+.closing-note{
+  display:block;
+}
+
+.closing-note .section-heading{
+  display:block;
+  max-width:760px;
+}
+
+.closing-note .muted-copy{
+  max-width:780px;
+  margin:0 0 14px;
+}
+
+.closing-note .muted-copy:last-child{
+  margin-bottom:0;
+}
+
 .timeline,
 .skills-list,
 .co-curricular-list,
