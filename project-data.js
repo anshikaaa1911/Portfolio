@@ -187,52 +187,61 @@ window.portfolioProjects = [
     ]
   },
   {
-    id: 'handwriting-ocr-system',
+    id: 'prescription-digitization-system',
     category: 'building',
-    title: 'Handwriting OCR System',
-    shortTitle: 'Handwriting OCR',
-    description: 'A computer vision pipeline that extracts clean, machine-readable text from handwritten notes and scanned documents using OpenCV preprocessing and Tesseract OCR.',
-    thumbnailLabel: 'OCR Extraction Workspace',
-    tech: ['Computer Vision', 'OCR', 'OpenCV', 'Tesseract', 'Python'],
+    title: 'Prescription Digitization System',
+    shortTitle: 'Prescription AI',
+    description: 'An AI-powered prescription digitization system that combines computer vision, OCR, and LLM-based information extraction to convert prescription images into structured healthcare data.',
+    thumbnailLabel: 'Prescription Extraction Workspace',
+    tech: [
+      'Python',
+      'OpenCV',
+      'Tesseract OCR',
+      'Large Language Models (LLMs)',
+      'Natural Language Processing (NLP)',
+      'Computer Vision',
+      'Generative AI'
+    ],
     video: {
       src: '',
       autoplay: false
     },
     live: '#',
     repo: 'https://github.com/anshikaaa1911/HandWriting',
-    overview: 'An OCR system being built to convert handwritten notes and printed scans into searchable, editable text — with a preprocessing pipeline designed to handle real-world image imperfections like noise, skew, and uneven lighting.',
-    problem: 'Handwritten notes and physical documents are locked in image form — unsearchable, uneditable, and expensive to transcribe manually. Existing OCR tools often fail on imperfect scans without preprocessing.',
-    objective: 'Build a robust preprocessing and OCR pipeline that meaningfully improves text extraction accuracy from noisy, skewed, or low-contrast document images — making handwritten content actually usable.',
-    solution: 'Designing an image processing pipeline using OpenCV (thresholding, noise reduction, deskewing, segmentation) feeding into Tesseract OCR, with a review interface for correcting low-confidence extractions.',
-    impact: 'Reduces manual transcription effort, enables document search across previously inaccessible notes, and creates a reusable base for larger digitization workflows.',
+    overview: 'A prescription intelligence system that extracts text from prescription images using OCR and converts it into structured medical information through LLM-powered analysis. The system identifies medicines, dosages, frequencies, and treatment instructions from unstructured prescription text.',
+    problem: 'Prescription details are often trapped in handwritten or scanned image form, making medicines, dosages, frequencies, and instructions difficult to search, validate, or integrate into digital healthcare workflows.',
+    objective: 'Build an AI-powered workflow that converts prescription images into structured, machine-readable healthcare data using computer vision preprocessing, OCR, and LLM-based information extraction.',
+    solution: 'Uses OpenCV for image preprocessing and Tesseract OCR for text extraction. The extracted text is analyzed by a Large Language Model (LLM) to identify and structure prescription details such as medicine names, dosages, frequencies, and instructions into machine-readable JSON outputs.',
+    impact: 'Demonstrates the integration of Computer Vision, OCR, Natural Language Processing, and Generative AI to automate prescription digitization and transform unstructured medical documents into structured healthcare data.',
     features: [
-      'OCR pipeline currently in active development with modular preprocessing stages',
-      'OpenCV-based image cleanup: thresholding, noise reduction, deskew, and segmentation',
-      'Tesseract OCR extraction with confidence scoring per text region',
-      'Document digitization interface with export to editable text formats'
+      'Prescription image preprocessing using OpenCV',
+      'Text extraction using Tesseract OCR',
+      'LLM-powered prescription information extraction',
+      'Structured JSON generation from unstructured prescription text',
+      'Automated identification of medicines, dosages, frequencies, and instructions'
     ],
     planned: [
-      'Image upload with instant preprocessing preview and parameter controls',
-      'Confidence-highlighted OCR output for quick manual correction',
-      'Batch document processing for multi-page uploads',
-      'Export to plain text, Markdown, and structured JSON formats'
+      'Prescription image upload with preprocessing preview and parameter controls',
+      'Review view for OCR text and extracted prescription fields',
+      'Batch processing for multiple prescription images',
+      'Export to structured JSON for downstream healthcare workflows'
     ],
-    screenshots: ['Image upload concept', 'Preprocessing preview', 'Extracted text output'],
+    screenshots: ['Prescription upload concept', 'Preprocessing preview', 'Structured JSON output'],
     technical: {
-      frontend: 'Planned interface for image upload, live preprocessing preview, OCR results display, and in-place text correction.',
-      backend: 'Python service handling image preprocessing, OCR execution, confidence scoring, and result formatting.',
-      database: 'Optional document store for uploaded images, extracted text, processing metadata, and correction history.',
-      apis: 'Planned endpoints for image upload, preprocessing job status, OCR result retrieval, and corrected text export.',
-      ml: 'OpenCV preprocessing feeds Tesseract OCR, with planned integration of handwriting-specific recognition models (e.g., TrOCR or CRNN) as labeled training data grows.'
+      frontend: 'Planned interface for prescription image upload, preprocessing preview, OCR text review, and structured extraction results.',
+      backend: 'Python service handling image preprocessing, OCR execution, LLM extraction, and JSON result formatting.',
+      database: 'Optional document store for uploaded prescription images, extracted text, structured fields, processing metadata, and review history.',
+      apis: 'Planned endpoints for image upload, preprocessing job status, OCR result retrieval, LLM extraction, and JSON export.',
+      ml: 'Combines OpenCV-based image enhancement, Tesseract OCR for text extraction, and Large Language Models (LLMs) for intelligent extraction and structuring of prescription information into JSON-based outputs.'
     },
     challenges: [
-      'Handling the full spectrum of real-world image quality — inconsistent lighting, ink variation, paper texture, skew, and overlapping characters.',
-      'Selecting preprocessing steps that improve OCR accuracy without destroying fine character detail in complex handwriting.'
+      'Handling real-world prescription image quality: inconsistent lighting, ink variation, paper texture, skew, and overlapping handwritten text.',
+      'Structuring noisy OCR text into reliable medicine names, dosages, frequencies, and instructions.'
     ],
     future: [
-      'Integrate handwriting-specific deep learning models for higher accuracy on cursive and mixed scripts.',
-      'Add confidence highlighting with an inline correction tool so users can fix extraction errors without leaving the app.',
-      'Support batch processing for multi-page scans and folder-level digitization workflows.'
+      'Add confidence scoring for OCR text and LLM-extracted prescription fields.',
+      'Introduce human review for ambiguous medicines, dosages, and instructions.',
+      'Support batch processing for multi-page prescriptions and folder-level digitization workflows.'
     ]
   }
 ];
