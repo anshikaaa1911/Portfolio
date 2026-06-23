@@ -142,16 +142,20 @@ window.portfolioProjects = [
     category: 'building',
     title: 'Prescription Digitization System',
     shortTitle: 'Prescription AI',
-    description: 'An AI-powered prescription digitization system that combines computer vision, OCR, and LLM-based information extraction to convert prescription images into structured healthcare data.',
-    thumbnailLabel: 'Prescription Extraction Workspace',
+    description: 'An end-to-end OCR pipeline that converts handwritten and printed doctor prescriptions into validated, structured JSON using image preprocessing, OCR, NLP extraction, drug validation, and API deployment.',
+    thumbnailLabel: 'Prescription OCR Pipeline',
     tech: [
       'Python',
       'OpenCV',
       'Tesseract OCR',
+      'spaCy',
+      'Regex Parsing',
+      'FastAPI',
+      'OpenFDA API',
+      'YAML Config',
       'Large Language Models (LLMs)',
       'Natural Language Processing (NLP)',
-      'Computer Vision',
-      'Generative AI'
+      'Computer Vision'
     ],
     video: {
       src: '',
@@ -159,40 +163,43 @@ window.portfolioProjects = [
     },
     live: '#',
     repo: 'https://github.com/anshikaaa1911/HandWriting',
-    overview: 'A prescription intelligence system that extracts text from prescription images using OCR and converts it into structured medical information through LLM-powered analysis. The system identifies medicines, dosages, frequencies, and treatment instructions from unstructured prescription text.',
-    problem: 'Prescription details are often trapped in handwritten or scanned image form, making medicines, dosages, frequencies, and instructions difficult to search, validate, or integrate into digital healthcare workflows.',
-    objective: 'Build an AI-powered workflow that converts prescription images into structured, machine-readable healthcare data using computer vision preprocessing, OCR, and LLM-based information extraction.',
-    solution: 'Uses OpenCV for image preprocessing and Tesseract OCR for text extraction. The extracted text is analyzed by a Large Language Model (LLM) to identify and structure prescription details such as medicine names, dosages, frequencies, and instructions into machine-readable JSON outputs.',
-    impact: 'Demonstrates the integration of Computer Vision, OCR, Natural Language Processing, and Generative AI to automate prescription digitization and transform unstructured medical documents into structured healthcare data.',
+    overview: 'A local-first healthcare automation system that cleans prescription images, extracts raw OCR text, parses patient and medication details, validates drug names, and returns confidence-scored structured JSON through FastAPI endpoints.',
+    problem: 'Prescription information is often locked inside handwritten or scanned documents, where noisy images, inconsistent doctor handwriting, abbreviations, and unclear dosage instructions make the data hard to search, validate, or use in pharmacy workflows.',
+    objective: 'Automate the conversion of handwritten and printed prescriptions into validated, machine-readable JSON while keeping the pipeline configurable, fault-tolerant, and practical for real-world healthcare integration.',
+    solution: 'Combines OpenCV preprocessing, Tesseract OCR with fallback options, spaCy and regex-based information extraction, OpenFDA drug validation, optional OpenAI LLM refinement for ambiguous text, and FastAPI endpoints for single-image and batch processing.',
+    impact: 'Reduces manual prescription entry, supports safer pharmacy automation through drug validation and confidence scoring, and creates a structured bridge between unstructured medical documents and downstream healthcare systems.',
     features: [
-      'Prescription image preprocessing using OpenCV',
-      'Text extraction using Tesseract OCR',
-      'LLM-powered prescription information extraction',
-      'Structured JSON generation from unstructured prescription text',
-      'Automated identification of medicines, dosages, frequencies, and instructions'
+      'OpenCV preprocessing for denoising, thresholding, contrast enhancement, and prescription image cleanup',
+      'Tesseract OCR extraction with fallback-ready handling for difficult handwriting and noisy scans',
+      'spaCy and regex parsing for patient details, medications, dosages, diagnoses, and instructions',
+      'Optional OpenAI LLM refinement for ambiguous handwriting and low-confidence extracted fields',
+      'OpenFDA-based drug validation with confidence scoring for each extracted field',
+      'FastAPI deployment with single-image and batch prescription processing endpoints',
+      'Configurable runtime settings through config.yaml for local-first execution'
     ],
     planned: [
       'Prescription image upload with preprocessing preview and parameter controls',
-      'Review view for OCR text and extracted prescription fields',
-      'Batch processing for multiple prescription images',
-      'Export to structured JSON for downstream healthcare workflows'
+      'Review dashboard for OCR text, extracted fields, validation status, and confidence scores',
+      'Batch processing interface for folders or multi-prescription uploads',
+      'JSON export flow for downstream healthcare, pharmacy, or analytics systems'
     ],
-    screenshots: ['Prescription upload concept', 'Preprocessing preview', 'Structured JSON output'],
+    screenshots: ['Prescription upload', 'OCR and preprocessing review', 'Validated JSON output'],
     technical: {
-      frontend: 'Planned interface for prescription image upload, preprocessing preview, OCR text review, and structured extraction results.',
-      backend: 'Python service handling image preprocessing, OCR execution, LLM extraction, and JSON result formatting.',
-      database: 'Optional document store for uploaded prescription images, extracted text, structured fields, processing metadata, and review history.',
-      apis: 'Planned endpoints for image upload, preprocessing job status, OCR result retrieval, LLM extraction, and JSON export.',
-      ml: 'Combines OpenCV-based image enhancement, Tesseract OCR for text extraction, and Large Language Models (LLMs) for intelligent extraction and structuring of prescription information into JSON-based outputs.'
+      frontend: 'Planned review interface for uploading prescriptions, previewing preprocessing output, inspecting OCR text, and correcting extracted healthcare fields before export.',
+      backend: 'Python pipeline coordinating OpenCV preprocessing, Tesseract OCR, spaCy/regex extraction, OpenFDA validation, optional OpenAI refinement, confidence scoring, and final JSON assembly.',
+      database: 'Optional document store for prescription images, OCR text, structured fields, validation results, confidence scores, processing metadata, and review history.',
+      apis: 'FastAPI service exposing single-image and batch endpoints for prescription upload, OCR execution, structured extraction, validation, and JSON response delivery.',
+      ml: 'Uses computer vision preprocessing, OCR, NLP entity extraction, rule-based medical parsing, and optional LLM refinement to turn noisy prescription text into structured patient, medication, dosage, and diagnosis data.'
     },
     challenges: [
-      'Handling real-world prescription image quality: inconsistent lighting, ink variation, paper texture, skew, and overlapping handwritten text.',
-      'Structuring noisy OCR text into reliable medicine names, dosages, frequencies, and instructions.'
+      'Handling real-world prescription image quality: inconsistent lighting, ink variation, paper texture, skew, blur, and overlapping handwritten text.',
+      'Separating patient details, diagnoses, medication names, dosages, frequencies, and instructions from noisy OCR output.',
+      'Balancing local-first execution with optional LLM refinement while keeping extracted medical data auditable and confidence-scored.'
     ],
     future: [
-      'Add confidence scoring for OCR text and LLM-extracted prescription fields.',
-      'Introduce human review for ambiguous medicines, dosages, and instructions.',
-      'Support batch processing for multi-page prescriptions and folder-level digitization workflows.'
+      'Add a pharmacist review workflow for ambiguous medicines, dosages, and diagnosis fields.',
+      'Improve fallback OCR support for tougher handwriting and multi-language prescriptions.',
+      'Support integration-ready webhooks for pharmacy systems, hospital software, and document management platforms.'
     ]
   },
 
