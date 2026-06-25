@@ -141,7 +141,7 @@ window.portfolioProjects = [
     id: 'prescription-digitization-system',
     category: 'building',
     title: 'Prescription Digitization System',
-    shortTitle: 'Prescription AI',
+    shortTitle: 'Prescription AI (ALMOST DONE- The Work Never Ends)',
     description: 'An end-to-end OCR pipeline that converts handwritten and printed doctor prescriptions into validated, structured JSON using image preprocessing, OCR, NLP extraction, drug validation, and API deployment.',
     thumbnailLabel: 'Prescription OCR Pipeline',
     tech: [
@@ -206,7 +206,7 @@ window.portfolioProjects = [
     id: 'grownet-trust-community-platform',
     category: 'building',
     title: 'GROWNET Trust-Based Community Platform',
-    shortTitle: 'GROWNET - ALMOST DONE',
+    shortTitle: 'GROWNET',
     description: 'A scalable community platform being built around trust scoring, SOS alerts, and intelligent recommendations — designed to make local interaction safer and more reliable.',
     thumbnailLabel: 'Trust Community Network',
     tech: ['Trust Scoring', 'Recommendations', 'Safety Workflows', 'Scalable Design'],
