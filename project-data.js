@@ -202,12 +202,11 @@ window.portfolioProjects = [
       'Support integration-ready webhooks for pharmacy systems, hospital software, and document management platforms.'
     ]
   },
-
   {
     id: 'grownet-trust-community-platform',
     category: 'building',
     title: 'GROWNET Trust-Based Community Platform',
-    shortTitle: 'GROWNET',
+    shortTitle: 'GROWNET - ALMOST DONE',
     description: 'A scalable community platform being built around trust scoring, SOS alerts, and intelligent recommendations — designed to make local interaction safer and more reliable.',
     thumbnailLabel: 'Trust Community Network',
     tech: ['Trust Scoring', 'Recommendations', 'Safety Workflows', 'Scalable Design'],
@@ -251,8 +250,58 @@ window.portfolioProjects = [
       'Add explainable trust indicators so users understand exactly what affects their score.',
       'Scale alert routing and recommendations with stronger ranking algorithms and real usage data.'
     ]
+  },
+  {
+    id: 'lyf-bot',
+    category: 'building',
+    title: 'LYF BOT',
+    shortTitle: 'LYF BOT',
+    description: 'A full-stack interactive lifestyle goal tracker where users can register, log in, and manage healthy habits across fitness, nutrition, sleep, and daily routines — backed by a persistent Express REST API.',
+    thumbnailLabel: 'Lifestyle Goal Tracker',
+    tech: ['Node.js', 'Express', 'HTML', 'CSS', 'JavaScript', 'REST API', 'JSON Storage'],
+    video: {
+      src: '',
+      autoplay: false
+    },
+    live: '#',
+    repo: '#',
+    overview: 'LYF BOT is a full-stack lifestyle goal tracker that lets users set, monitor, and update health goals across categories like fitness, nutrition, sleep, and daily habits — with persistent accounts and a REST API powering the backend.',
+    problem: 'Staying consistent with healthy habits is hard when goals live in notes apps, spreadsheets, or memory. There\'s no single place to track progress, revisit targets, or see what\'s actually getting done.',
+    objective: 'Build a focused, low-friction goal tracker that gives users one place to register, set health goals with real targets and due dates, and update their progress over time.',
+    solution: 'Built a multi-page full-stack app with an Express backend, REST API endpoints for full goal CRUD, persistent JSON file storage for users and goals, and an interactive dashboard for managing the entire goal lifecycle.',
+    impact: 'Makes personal health tracking actionable — users can create structured goals, update progress, and stay accountable to their own targets through a clean, persistent dashboard.',
+    features: [
+      'User registration and login with persistent account storage',
+      'Interactive dashboard for creating, updating, and deleting lifestyle goals',
+      'Health goal categories with targets, due dates, and personal notes',
+      'Simple Express REST API backing all goal and user operations'
+    ],
+    planned: [
+      'Progress visualization with charts for each goal category over time',
+      'Habit streak tracking and completion milestones',
+      'Goal reminders and scheduled check-in prompts',
+      'Mobile-optimized dashboard layout'
+    ],
+    screenshots: ['Landing page', 'Goal dashboard', 'Goal creation form'],
+    technical: {
+      frontend: 'Multi-page HTML/CSS/JS frontend with a landing page, registration and login flows, and a JavaScript-driven dashboard for real-time goal management.',
+      backend: 'Express.js server exposing REST API endpoints for user registration, authentication, and full goal CRUD — organized around clean route separation.',
+      database: 'Local JSON file storage in a data/ directory for users and goals — designed for demo and learning use, not production deployment.',
+      apis: 'REST endpoints: POST /register, POST /login, GET /goals, POST /goals, PUT /goals/:id, DELETE /goals/:id — covering all goal and user lifecycle operations.',
+      ml: 'No ML layer — the project focuses on structured habit tracking, goal persistence, and a clean full-stack workflow.'
+    },
+    challenges: [
+      'Keeping the full-stack architecture simple and self-contained while still demonstrating real REST API design patterns.',
+      'Managing persistent state across multi-page flows without a database, using flat JSON files reliably.'
+    ],
+    future: [
+      'Replace JSON file storage with a real database for scalability and concurrent access.',
+      'Add progress charts and streak tracking to make long-term habit patterns visible.',
+      'Harden authentication for production use with hashed passwords and session management.'
+    ]
   }
 ];
+
 /* ─────────────────────────────────────────────────────────────────
    VIDEO AUTOPLAY HELPER
    Paste this into your main JS entry point (index.js / App.jsx / main.js).
