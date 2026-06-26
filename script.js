@@ -703,53 +703,6 @@ function initProjectVideos() {
   });
 }
 
-/* ONGOING PROJECTS INTRO */
-function initOngoingProjectsIntro() {
-  const intro = document.querySelector('[data-ongoing-intro]');
-  if (!intro) return;
-
-  const images = [...intro.querySelectorAll('img')];
-  let loadedCount = 0;
-
-  function startAnimation() {
-    intro.classList.add('intro-ready');
-    document.body.classList.add('intro-active');
-
-    intro.addEventListener('animationend', (event) => {
-      if (event.target === intro && event.animationName === 'ongoingIntroExit') finishIntro();
-    });
-
-    setTimeout(() => {
-      if (document.body.contains(intro)) finishIntro();
-    }, 5300);
-  }
-
-  function finishIntro() {
-    intro.remove();
-    document.body.classList.remove('intro-active');
-  }
-
-  function onImageLoaded() {
-    loadedCount++;
-    if (loadedCount === images.length) {
-      startAnimation();
-    }
-  }
-
-  if (images.length > 0) {
-    images.forEach((img) => {
-      if (img.complete) {
-        onImageLoaded();
-      } else {
-        img.addEventListener('load', onImageLoaded);
-        img.addEventListener('error', onImageLoaded);
-      }
-    });
-  } else {
-    startAnimation();
-  }
-}
-
 /* BUILT PROJECTS INTRO */
 function initBuiltProjectsIntro() {
   const intro = document.querySelector('[data-built-intro]');
@@ -789,7 +742,6 @@ function initBuiltProjectsIntro() {
 
 /* INIT */
 initBuiltProjectsIntro();
-initOngoingProjectsIntro();
 renderSkills();
 renderActivities();
 renderCertifications();
