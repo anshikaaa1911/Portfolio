@@ -1,4 +1,4 @@
-﻿const skillGroups = [
+const skillGroups = [
   {
     title: 'Machine Learning',
     items: ['Feature Engineering', 'Model Evaluation', 'Regression', 'Classification', 'Clustering', 'CNNs', 'XceptionNet']
@@ -87,7 +87,7 @@ function renderCertifications() {
   `).join('');
 }
 
-function projectThumbnail(project) {
+function projectThumbnail(project, isLink = true) {
   const vidSrc    = project.video?.src || project.video || '';
   const doAutoplay = project.video?.autoplay !== false; // default true for plain strings
 
@@ -105,12 +105,15 @@ function projectThumbnail(project) {
        ></video>`
     : '';
 
+  const tag = isLink ? 'a' : 'div';
+  const hrefAttr = isLink ? `href="project.html?id=${project.id}"` : '';
+
   return `
-    <div class="project-thumb ${vidSrc ? 'has-media' : ''}" aria-label="${project.thumbnailLabel}">
+    <${tag} ${hrefAttr} class="project-thumb ${vidSrc ? 'has-media' : ''}" aria-label="${project.thumbnailLabel}">
       ${media}
       <strong>${project.shortTitle}</strong>
       <small>${project.thumbnailLabel}</small>
-    </div>
+    </${tag}>
   `;
 }
 
@@ -119,15 +122,16 @@ function projectCard(project) {
   const repoIsAvailable = isAvailable(project.repo);
   return `
     <article class="project-card reveal">
-      ${projectThumbnail(project)}
+      ${projectThumbnail(project, true)}
       <div class="project-body">
         ${isBuilding ? '<span class="status-badge">Currently Building</span>' : ''}
-        <h3>${project.title}</h3>
+        <h3><a href="project.html?id=${project.id}" class="project-title-link">${project.title}</a></h3>
         <p>${project.description}</p>
         <div class="project-tags">${makeTagList(project.tech)}</div>
         ${isBuilding && project.planned ? `<div class="planned-list"><strong>Planned Features</strong><ul>${makeList(project.planned.slice(0, 3))}</ul></div>` : ''}
         <div class="project-actions">
-          <a class="primary-link ${repoIsAvailable ? '' : 'disabled-link'}" href="${repoIsAvailable ? project.repo : '#'}" target="_blank" rel="noreferrer" aria-disabled="${!repoIsAvailable}">View Repository</a>
+          <a class="primary-link" href="project.html?id=${project.id}">View Details</a>
+          <a class="secondary-link ${repoIsAvailable ? '' : 'disabled-link'}" href="${repoIsAvailable ? project.repo : '#'}" target="_blank" rel="noreferrer" aria-disabled="${!repoIsAvailable}">View Repository</a>
         </div>
       </div>
     </article>
@@ -197,7 +201,7 @@ function renderProjectDetail() {
           <a class="secondary-link" href="projects.html">Back to Projects</a>
         </div>
       </div>
-      ${projectThumbnail(project)}
+      ${projectThumbnail(project, false)}
     </section>
 
     <section class="section reveal">
@@ -704,26 +708,46 @@ function initOngoingProjectsIntro() {
   const intro = document.querySelector('[data-ongoing-intro]');
   if (!intro) return;
 
-  const imageSources = [...intro.querySelectorAll('img')].map((img) => img.src);
-  imageSources.forEach((src) => {
-    const preload = new Image();
-    preload.src = src;
-  });
+  const images = [...intro.querySelectorAll('img')];
+  let loadedCount = 0;
 
-  document.body.classList.add('intro-active');
+  function startAnimation() {
+    intro.classList.add('intro-ready');
+    document.body.classList.add('intro-active');
+
+    intro.addEventListener('animationend', (event) => {
+      if (event.target === intro && event.animationName === 'ongoingIntroExit') finishIntro();
+    });
+
+    setTimeout(() => {
+      if (document.body.contains(intro)) finishIntro();
+    }, 5300);
+  }
 
   function finishIntro() {
     intro.remove();
     document.body.classList.remove('intro-active');
   }
 
-  intro.addEventListener('animationend', (event) => {
-    if (event.target === intro && event.animationName === 'ongoingIntroExit') finishIntro();
-  });
+  function onImageLoaded() {
+    loadedCount++;
+    if (loadedCount === images.length) {
+      startAnimation();
+    }
+  }
 
-  setTimeout(() => {
-    if (document.body.contains(intro)) finishIntro();
-  }, 5300);
+  if (images.length > 0) {
+    images.forEach((img) => {
+      if (img.complete) {
+        onImageLoaded();
+      } else {
+        img.addEventListener('load', onImageLoaded);
+        img.addEventListener('error', onImageLoaded);
+      }
+    });
+  } else {
+    startAnimation();
+  }
 }
 
 /* BUILT PROJECTS INTRO */
@@ -732,25 +756,35 @@ function initBuiltProjectsIntro() {
   if (!intro) return;
 
   const image = intro.querySelector('img');
-  if (image) {
-    const preload = new Image();
-    preload.src = image.src;
-  }
 
-  document.body.classList.add('intro-active');
+  function startAnimation() {
+    intro.classList.add('intro-ready');
+    document.body.classList.add('intro-active');
+
+    intro.addEventListener('animationend', (event) => {
+      if (event.target === intro && event.animationName === 'builtIntroExit') finishIntro();
+    });
+
+    setTimeout(() => {
+      if (document.body.contains(intro)) finishIntro();
+    }, 5300);
+  }
 
   function finishIntro() {
     intro.remove();
     document.body.classList.remove('intro-active');
   }
 
-  intro.addEventListener('animationend', (event) => {
-    if (event.target === intro && event.animationName === 'builtIntroExit') finishIntro();
-  });
-
-  setTimeout(() => {
-    if (document.body.contains(intro)) finishIntro();
-  }, 5300);
+  if (image) {
+    if (image.complete) {
+      startAnimation();
+    } else {
+      image.addEventListener('load', startAnimation);
+      image.addEventListener('error', startAnimation);
+    }
+  } else {
+    startAnimation();
+  }
 }
 
 /* INIT */

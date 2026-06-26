@@ -3,35 +3,16 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Ongoing Projects | Anshika Bharti</title>
-    <link rel="preload" as="image" href="public/intro/ongoing-intro-hello.png" />
-    <link rel="preload" as="image" href="public/intro/ongoing-intro-never-ends.png" />
+    <title>Project | Anshika Bharti</title>
     <link rel="stylesheet" href="styles.css?v=8" />
   </head>
   <body>
-    <script>document.body.classList.add('intro-active');</script>
-    <div class="ongoing-intro" data-ongoing-intro aria-hidden="true">
-      <div class="ongoing-intro__scene ongoing-intro__scene--hello">
-        <img src="public/intro/ongoing-intro-hello.png" alt="" />
-        <div class="ongoing-intro__text ongoing-intro__hello">Hello</div>
-      </div>
-      <div class="ongoing-intro__scene ongoing-intro__scene--ending">
-        <img src="public/intro/ongoing-intro-never-ends.png" alt="" />
-        <div class="ongoing-intro__text ongoing-intro__sentence" aria-label="It, never ends!">
-          <span>It,</span>
-          <span>never</span>
-          <span>ends!</span>
-        </div>
-      </div>
-    </div>
-
     <header class="site-header">
       <a class="brand" href="index.html#hero">Anshika Bharti</a>
       <button class="menu-toggle" type="button" aria-label="Toggle navigation" aria-expanded="false">Menu</button>
-      <nav class="nav" aria-label="Project navigation">
+      <nav class="nav" aria-label="Project detail navigation">
         <a href="index.html#about">Portfolio</a>
         <a href="projects.html">Projects</a>
-        <a class="active" href="ongoing.html">Ongoing</a>
         <a href="index.html#contact">Contact</a>
         <a href="public/RESUME1.pdf" target="_blank" rel="noreferrer">Resume</a>
       </nav>
@@ -46,26 +27,7 @@
       </div>
     </header>
 
-    <main class="container page-shell">
-      <section class="hero compact-hero reveal">
-        <div class="hero-content">
-          <p class="eyebrow">Active Builds</p>
-          <h1>Ongoing projects in development.</h1>
-          <p>Active ideas, planned features, and systems currently being shaped into complete products.</p>
-          <div class="hero-actions">
-            <a class="primary-link" href="projects.html">Built Projects</a>
-          </div>
-        </div>
-      </section>
-
-      <section id="building-section" class="section projects-strip-section reveal">
-        <div class="section-heading">
-          <h2>Ongoing Projects</h2>
-          <p>Active ideas and systems currently being developed.</p>
-        </div>
-        <div class="projects-grid" id="building-projects"></div>
-      </section>
-    </main>
+    <main class="container page-shell" id="project-detail"></main>
 
     <script src="project-data.js?v=2"></script>
     <script src="script.js?v=8"></script>

@@ -1067,3 +1067,38 @@ h1,h2,h3,p{letter-spacing:0}
     width:100%;
   }
 }
+
+/* --- Intro Animations Synchronization --- */
+.built-intro,
+.built-intro img,
+.built-intro__text span,
+.ongoing-intro,
+.ongoing-intro__scene,
+.ongoing-intro__hello,
+.ongoing-intro__sentence span {
+  animation-play-state: paused;
+}
+
+.built-intro.intro-ready,
+.built-intro.intro-ready img,
+.built-intro.intro-ready .built-intro__text span,
+.ongoing-intro.intro-ready,
+.ongoing-intro.intro-ready .ongoing-intro__scene,
+.ongoing-intro.intro-ready .ongoing-intro__hello,
+.ongoing-intro.intro-ready .ongoing-intro__sentence span {
+  animation-play-state: running;
+}
+
+/* --- Project Card Links --- */
+.project-thumb,
+.project-title-link {
+  text-decoration: none;
+}
+.project-title-link {
+  color: inherit;
+  transition: color 0.15s ease;
+}
+.project-title-link:hover {
+  color: var(--accent-strong);
+}
+
