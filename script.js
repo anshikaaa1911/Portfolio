@@ -699,7 +699,63 @@ function initProjectVideos() {
   });
 }
 
+/* ONGOING PROJECTS INTRO */
+function initOngoingProjectsIntro() {
+  const intro = document.querySelector('[data-ongoing-intro]');
+  if (!intro) return;
+
+  const imageSources = [...intro.querySelectorAll('img')].map((img) => img.src);
+  imageSources.forEach((src) => {
+    const preload = new Image();
+    preload.src = src;
+  });
+
+  document.body.classList.add('intro-active');
+
+  function finishIntro() {
+    intro.remove();
+    document.body.classList.remove('intro-active');
+  }
+
+  intro.addEventListener('animationend', (event) => {
+    if (event.target === intro && event.animationName === 'ongoingIntroExit') finishIntro();
+  });
+
+  setTimeout(() => {
+    if (document.body.contains(intro)) finishIntro();
+  }, 5300);
+}
+
+/* BUILT PROJECTS INTRO */
+function initBuiltProjectsIntro() {
+  const intro = document.querySelector('[data-built-intro]');
+  if (!intro) return;
+
+  const image = intro.querySelector('img');
+  if (image) {
+    const preload = new Image();
+    preload.src = image.src;
+  }
+
+  document.body.classList.add('intro-active');
+
+  function finishIntro() {
+    intro.remove();
+    document.body.classList.remove('intro-active');
+  }
+
+  intro.addEventListener('animationend', (event) => {
+    if (event.target === intro && event.animationName === 'builtIntroExit') finishIntro();
+  });
+
+  setTimeout(() => {
+    if (document.body.contains(intro)) finishIntro();
+  }, 5300);
+}
+
 /* INIT */
+initBuiltProjectsIntro();
+initOngoingProjectsIntro();
 renderSkills();
 renderActivities();
 renderCertifications();
