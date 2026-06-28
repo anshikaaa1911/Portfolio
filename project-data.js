@@ -46,6 +46,89 @@ window.portfolioProjects = [
     ]
   },
   {
+  id: 'prescription-digitization-system',
+  category: 'built/building',
+  title: 'Prescription Digitization System',
+  shortTitle: 'Prescription OCR (Under Construction — but shipping anyway)',
+  description: 'An end-to-end AI pipeline that converts handwritten and printed doctor prescriptions into validated, structured JSON using OpenCV image preprocessing, Tesseract + EasyOCR, spaCy NER, OpenFDA drug validation, dual LLM support (OpenAI + NVIDIA NIM), and a Streamlit web portal with FastAPI deployment.',
+  thumbnailLabel: 'Prescription OCR Pipeline',
+  tech: [
+    'Python',
+    'OpenCV',
+    'Tesseract OCR',
+    'EasyOCR',
+    'spaCy',
+    'Regex Parsing',
+    'FastAPI',
+    'Streamlit',
+    'OpenFDA API',
+    'OpenAI API',
+    'NVIDIA NIM',
+    'Llama 3.1 8B',
+    'YAML Config',
+    'Large Language Models (LLMs)',
+    'Natural Language Processing (NLP)',
+    'Computer Vision'
+  ],
+  video: {
+    src: './public/videos/prescription-digitization-system.mp4',
+    autoplay: false
+  },
+  live: '#',
+  repo: 'https://github.com/anshikaaa1911/Doctor-Prescription-OCR-System',
+  overview: 'A local-first healthcare automation system that cleans prescription images using 7 tunable OpenCV parameters, extracts raw OCR text via Tesseract with EasyOCR fallback, parses patient and medication details using spaCy NER and regex, validates drug names against OpenFDA, and optionally refines ambiguous extractions using OpenAI GPT or NVIDIA NIM (Llama 3.1 8B) — returning confidence-scored structured JSON through FastAPI endpoints or an interactive Streamlit web portal.',
+  problem: 'Prescription information is often locked inside handwritten or scanned documents, where noisy images, inconsistent doctor handwriting, abbreviations, and unclear dosage instructions make the data hard to search, validate, or use in pharmacy workflows. Manual transcription is slow, error-prone, and does not scale.',
+  objective: 'Automate the conversion of handwritten and printed prescriptions into validated, machine-readable JSON while keeping the pipeline configurable, resilient through automatic fallback chains, and practical for real-world healthcare integration.',
+  solution: 'Combines a 7-parameter OpenCV preprocessing sandbox, Tesseract OCR with automatic EasyOCR fallback, spaCy NER and regex-based field extraction, OpenFDA drug validation, dual LLM refinement support via OpenAI and NVIDIA NIM, confidence scoring per field, and FastAPI endpoints for single-image and batch processing — all configurable through a single config.yaml with no code changes required.',
+  impact: 'Reduces manual prescription entry errors, supports safer pharmacy automation through real-time FDA drug validation and per-field confidence scoring, and creates a structured bridge between unstructured medical documents and downstream healthcare systems.',
+  features: [
+    '7-parameter OpenCV preprocessing sandbox — Resize Width, CLAHE contrast enhancement, CLAHE Grid Size, Non-Local Means Denoising, Auto-Deskew via Hough Lines, Adaptive Thresholding, and Morphology Kernel cleanup — all live-tunable from the Streamlit sidebar',
+    'Tesseract OCR extraction with automatic EasyOCR fallback when confidence is low — zero manual intervention required',
+    'spaCy NER and regex parsing for patient name, age, gender, doctor details, diagnosis, drug names, dosages, frequencies, and durations',
+    'Real-time drug validation against the OpenFDA database with per-field and overall confidence scoring',
+    'Dual LLM Refinement Layer — switchable between OpenAI GPT and NVIDIA NIM (meta/llama-3.1-8b-instruct) directly from the UI, with automatic fallback to spaCy if the LLM call fails',
+    'FastAPI REST API with single-image and batch prescription processing endpoints — accepts JPG, PNG, PDF',
+    'Interactive Streamlit Web Portal — upload prescriptions, tune preprocessing parameters live, inspect OCR confidence scores, switch LLM providers, and download structured results as JSON or TXT',
+    'Fully configurable via config.yaml — no code changes needed for new environments',
+    'Privacy-first local execution — no data leaves your machine unless LLM augmentation is explicitly enabled'
+  ],
+  planned: [
+    'Patient context input before upload — reason for visit to improve LLM extraction accuracy on ambiguous handwriting',
+    'TrOCR integration — Microsoft transformer model fine-tuned on handwritten text for significantly better accuracy on degraded prescriptions',
+    'FHIR-compatible JSON output for direct integration with hospital EHR systems',
+    'Docker deployment — containerized setup to handle Tesseract system dependencies cleanly',
+    'Pharmacist review workflow for flagged low-confidence extractions',
+    'Multi-language prescription support',
+    'Async batch processing with job queue'
+  ],
+  screenshots: [
+    'Streamlit preprocessing sandbox with 7 live-tunable OpenCV parameters',
+    'Dual LLM provider selection — OpenAI vs NVIDIA NIM',
+    'OCR extraction with confidence statistics and extracted text',
+    'Validated JSON output with per-field confidence scores'
+  ],
+  technical: {
+    frontend: 'Streamlit Web Portal with a dark-themed glassmorphic UI — supports prescription image and PDF upload (up to 200MB), real-time preprocessing parameter tuning via sidebar sliders, side-by-side preprocessing comparison, per-character OCR confidence inspection, LLM provider switching, and JSON/TXT download of structured results.',
+    backend: 'Python pipeline coordinating 7-parameter OpenCV preprocessing, Tesseract OCR with EasyOCR fallback, spaCy NER and regex field extraction, OpenFDA drug validation, dual LLM refinement via OpenAI and NVIDIA NIM, per-field confidence scoring, and final structured JSON assembly — all driven by config.yaml.',
+    database: 'Optional document store for prescription images, OCR text, structured fields, validation results, confidence scores, processing metadata, and review history.',
+    apis: 'FastAPI service exposing single-image and batch endpoints for prescription upload, OCR execution, structured extraction, OpenFDA validation, and confidence-scored JSON response delivery. Accepts JPG, PNG, and PDF inputs.',
+    ml: 'Computer vision preprocessing pipeline (OpenCV), dual-engine OCR (Tesseract + EasyOCR), spaCy Named Entity Recognition, rule-based medical regex parsing, OpenFDA validation, and optional LLM refinement (OpenAI GPT / NVIDIA NIM Llama 3.1 8B) — together converting noisy prescription images into structured patient, medication, dosage, and diagnosis data with confidence scoring throughout.'
+  },
+  challenges: [
+    'Handling real-world prescription image quality: inconsistent lighting, ink variation, paper texture, skew, blur, and overlapping handwritten text — solved through a 7-parameter tunable OpenCV preprocessing sandbox.',
+    'Separating patient details, diagnoses, medication names, dosages, frequencies, and instructions from noisy, unstructured OCR output — addressed with spaCy NER combined with custom medical regex patterns.',
+    'Balancing local-first execution with optional cloud LLM refinement while keeping extracted medical data auditable, confidence-scored, and safe from silent failures — handled via automatic fallback chains at every layer.'
+  ],
+  future: [
+    'Integrate TrOCR for significantly better handwriting recognition on degraded prescriptions.',
+    'Add patient context input (reason for visit) to improve LLM extraction accuracy on ambiguous fields.',
+    'Support FHIR-compatible output for direct EHR system integration.',
+    'Add pharmacist review workflow for low-confidence extractions before downstream use.',
+    'Containerize with Docker for reproducible cross-platform deployment.',
+    'Expand fallback OCR support for multi-language prescriptions.'
+  ]
+},
+  {
     id: 'college-marketplace-recommendation-system',
     category: 'built',
     title: 'College Marketplace with Recommendation System',
@@ -162,7 +245,7 @@ window.portfolioProjects = [
       autoplay: false
     },
     live: '#',
-    repo: 'https://github.com/anshikaaa1911/HandWriting',
+    repo: 'https://github.com/anshikaaa1911/Doctor-Prescription-OCR-System',
     overview: 'A local-first healthcare automation system that cleans prescription images, extracts raw OCR text, parses patient and medication details, validates drug names, and returns confidence-scored structured JSON through FastAPI endpoints.',
     problem: 'Prescription information is often locked inside handwritten or scanned documents, where noisy images, inconsistent doctor handwriting, abbreviations, and unclear dosage instructions make the data hard to search, validate, or use in pharmacy workflows.',
     objective: 'Automate the conversion of handwritten and printed prescriptions into validated, machine-readable JSON while keeping the pipeline configurable, fault-tolerant, and practical for real-world healthcare integration.',
